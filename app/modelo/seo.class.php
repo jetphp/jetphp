@@ -18,5 +18,23 @@
         return false;
       }
     }
+    public static function montar() {
+      if (count(self::$seo) > 0) {
+        foreach (self::$seo as $nome => $valor) {
+          switch ($nome) {
+            case 'descricao':
+              echo "<meta name='description' content='$valor'>\n";
+              break;
+            case 'titulo':
+              echo "<meta name='title' content='$valor'>\n";
+              break;
+
+            default:
+              echo "<meta name='$nome' content='$valor'>\n";
+              break;
+          }
+        }
+      }
+    }
   }
 ?>

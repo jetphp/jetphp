@@ -7,7 +7,11 @@
   // Rotas
 
   Rota::adicionar('/','index@InicioControle');
-  
+
+  // Gerenciador - não remover
   Rota::adicionar(Config::mostrar('PASTA_ADMIN').':pagina','pagina@AdministradorControle');
   Rota::adicionar(Config::mostrar('PASTA_ADMIN').'','index@AdministradorControle');
+
+  // Rota de instalação, remover após instalar
+  Rota::adicionar('instalacao','index@InstalacaoControle');
 ?>

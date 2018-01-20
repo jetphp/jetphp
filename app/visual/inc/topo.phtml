@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title><?php echo Config::mostrar('TITULO'); ?></title>
+
+    <?php SEO::montar(); ?>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="<?php echo Config::mostrar('PASTA_MISC'); ?>css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo Config::mostrar('PASTA_MISC'); ?>css/padrao.css">

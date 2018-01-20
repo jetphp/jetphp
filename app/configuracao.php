@@ -9,7 +9,7 @@
   Config::adicionar('DEBUG',true);
   Config::adicionar('md5_salt','jetphp_');
 
-  Config::adicionar('TITULO','Início - JetPHP');
+  Config::adicionar('TITULO','JetPHP');
   Config::adicionar('PASTA_PADRAO','/');
   Config::adicionar('PASTA_ADMIN','gerenciador/');
   Config::adicionar('PASTA_MISC',Config::mostrar('PASTA_PADRAO').'app/visual/misc/');
