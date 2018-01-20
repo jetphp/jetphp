@@ -26,5 +26,5 @@ composer install
 ### Versão
 
 ```
-v0.2-dev
+v0.3-dev
 ```
