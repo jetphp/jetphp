@@ -20,7 +20,7 @@
   Config::adicionar('PREFIXO_SITE','site_');
 
   Config::adicionar('DB_HOST','localhost');
-  Config::adicionar('DB_USUARIO','root');
-  Config::adicionar('DB_SENHA','jasolutions');
+  Config::adicionar('DB_USUARIO','usuario');
+  Config::adicionar('DB_SENHA','senha');
   Config::adicionar('DB_NOME','jetphp');
 ?>
