@@ -16,10 +16,6 @@
         if ($var != null and is_array($var)) {
           extract($var);
         }
-        if (!class_exists('Produto')) {
-          self::classe('Produto');
-        }
-        $arr_produtos = Produto::todos();
 
         if ($admin) {
           $adm = 'admin/';
