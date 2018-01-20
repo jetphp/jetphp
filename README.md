@@ -20,7 +20,7 @@ svn checkout https://github.com/JoaoArtur/JetPHP.git
 Caso não tenha o composer instalado, [veja como instalá-lo](https://getcomposer.org/), após execute em seu terminal o comando:
 
 ```
-composer install
+composer instalar
 ```
 
 ### Versão
