@@ -3,7 +3,11 @@
     "description": "JetPHP - Framework gaúcho.",
     "keywords": ["framework", "jetphp"],
     "require": {
-        "phpmailer/phpmailer": "^6.0"
+        "phpmailer/phpmailer": "^6.0",
+        "psr/log": "^1.0",
+        "league/oauth2-google": "^2.0",
+        "stevenmaguire/oauth2-microsoft": "^2.2",
+        "symfony/polyfill-mbstring": "^1.6"
     },
     "scripts": {
     	"bem-vindo": [
