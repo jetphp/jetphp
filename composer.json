@@ -13,6 +13,7 @@
     "scripts": {
     	"instalar": [
     	  "echo 'Bem vindo ao JetPHP!\n@author João Artur\n\n'",
+          "composer install"
           "wget http://dev.joaoartur.com/projetos/jetphp/jetphp-admin.zip",
           "mv jetphp-admin.zip app/visual/admin.zip",
           "unzip app/visual/admin.zip -d app/visual/",
