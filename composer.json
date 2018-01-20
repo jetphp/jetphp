@@ -11,8 +11,8 @@
         "guzzlehttp/guzzle": "^6.3"
     },
     "scripts": {
-    	"bem-vindo": [
-    	  "@echo 'Bem vindo ao JetPHP!'"
+    	"instalar": [
+    	  "echo 'Bem vindo ao JetPHP!\n@author João Artur\n\n'"
     	]
     }
 
