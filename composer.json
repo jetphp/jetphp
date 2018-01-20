@@ -2,7 +2,7 @@
     "require": {
         "phpmailer/phpmailer": "^6.0"
     }
-    "scritps": {
+    "scripts": {
 	"bem-vindo": [
 	  "@echo 'Bem vindo ao JetPHP!'"
 	]
