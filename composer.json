@@ -1,11 +1,14 @@
 {
+    "name": "jetphp/jetphp",
+    "description": "JetPHP - Framework gaúcho.",
+    "keywords": ["framework", "jetphp"],
     "require": {
         "phpmailer/phpmailer": "^6.0"
-    }
+    },
     "scripts": {
-	"bem-vindo": [
-	  "@echo 'Bem vindo ao JetPHP!'"
-	]
+    	"bem-vindo": [
+    	  "@echo 'Bem vindo ao JetPHP!'"
+    	]
     }
 
 }
