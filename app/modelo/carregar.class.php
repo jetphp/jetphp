@@ -12,7 +12,9 @@
 
     public static function view($caminho,$var=null,$admin=false,$menu=true) {
       $caminho = str_replace('.','/',$caminho);
-      if (!isset($_POST['caminho']) and file_exists('app/visual/'.$caminho.'.phtml')) {
+      unset($_SESSION['caminho']);
+      if (!isset($_SESSION['caminho']) and file_exists('app/visual/'.$caminho.'.phtml')) {
+        $_SESSION['caminho'] = $caminho;
         if ($var != null and is_array($var)) {
           extract($var);
         }
@@ -32,7 +34,6 @@
       } else {
         return false;
       }
-      $_POST['caminho'] = $caminho;
     }
 
     public static function classe($classe) {

@@ -115,7 +115,7 @@
               $cont = $rota[1];
 
               if (file_exists('app/controlador/'.$cont.'.php')) {
-                $_COOKIE['caminho'] = $caminho;
+                $_SESSION['caminho'] = $caminho;
                 include 'app/controlador/'.$cont.'.php';
                 $cont = new $cont();
                 $cont::$func();
@@ -127,7 +127,7 @@
             Carregar::view('erro.404');
           }
         } else {
-          if (!isset($_COOKIE['caminho'])) {
+          if (!isset($_SESSION['caminho'])) {
             Carregar::view('erro.404');
           }
 
