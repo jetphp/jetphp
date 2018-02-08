@@ -1,5 +1,5 @@
 {
-    "name": "jetphp/jetphp",
+    "name": "joaoartur/jetphp",
     "description": "JetPHP - Framework gaúcho.",
     "keywords": ["framework", "jetphp"],
     "require": {
