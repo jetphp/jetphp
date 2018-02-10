@@ -14,4 +14,8 @@
 
   // Rota de instalação, remover após instalar
   Rota::adicionar('instalacao','index@InstalacaoControle');
+
+
+  Rota::adicionar('docs/:titulo/:pagina', 'index@DocsControle');
+  Rota::adicionar('docs/', 'redirecionar@DocsControle');
 ?>

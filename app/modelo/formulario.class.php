@@ -7,7 +7,7 @@
   // Modelo de criação de formularios, usado no gerenciador
 
   class Formulario {
-    public static $tabela;
+    public static $tabela = '';
     public static $acao = 'listar';
     public static $acaoformulario = '';
     public static $where = '1=1';

@@ -2,3 +2,40 @@
   margin-top: calc(50vh - 100px);
   font-family: "Source Sans Pro";
 }
+body {
+  overflow: hidden;
+}
+.doc-menu {
+  height: 100vh;
+  background-color: #e9e9e9;
+}
+.doc-menu h3, .doc-menu p {
+  padding-left: 15px;
+  padding-top: 5px;
+}
+
+.doc-menu ul {
+  width: 100vw;
+  list-style: none;
+  padding: 0;
+}
+.doc-menu ul li {
+  padding: 10px;
+  transition: ease 0.7s;
+}
+
+
+.doc-menu ul li:hover, .doc-menu ul li.active {
+  background-color: #e5e5e5;
+}
+.doc-menu ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.doc {
+  height: 100vh;
+  width: 100vw;
+  background-color: #e5e5e5;
+  overflow: auto;
+}
