@@ -20,5 +20,9 @@
         return false;
       }
     }
+
+    public static function url($pasta='') {
+      return 'http://'.$_SERVER['HTTP_HOST'].Config::mostrar('PASTA_PADRAO').$pasta;
+    }
   }
 ?>
