@@ -7,7 +7,7 @@
   // Modelo de criação de formularios, usado no gerenciador
 
   class Formulario {
-    public static $tabela = '';
+    public static $tabela;
     public static $acao = 'listar';
     public static $acaoformulario = '';
     public static $where = '1=1';
@@ -51,6 +51,14 @@
             $msg .= "</div>";
           break;
 
+          case 'boleano':
+            $msg .= "<div class='input-group $divClass'>";
+            $msg .= "<label>{$arr_nome[1]}</label><br>";
+            $msg .= "<input type='radio' id='{$tipo}_{$arr_nome[0]}' name='{$arr_nome[0]}' value='1'> Sim<br>";
+            $msg .= "<input type='radio' id='{$tipo}_{$arr_nome[0]}' name='{$arr_nome[0]}' value='0'> Não<br>";
+            $msg .= "</div>";
+          break;
+
           case 'select':
             $msg .= "<div class='input-group $divClass'>";
             $msg .= "<label for='{$tipo}_{$arr_nome[0]}'>{$arr_nome[1]}</label>";
@@ -58,6 +66,7 @@
               $sql = "SELECT * FROM {$arr_nome[2]}";
               $qr  = DB::executar($sql);
               $msg .= "<select name='{$arr_nome[0]}' class='form-control'>";
+              $msg .= "<option value='0'>--------</option>";
               if ($qr->rowCount() > 0) {
                 while ($r = $qr->fetch(PDO::FETCH_ASSOC)) {
                   if (isset($_GET['id'])) {
@@ -165,36 +174,42 @@
               $qr  = DB::executar($sql);
               $id = Entrada::get('id');
               // mostrar($sql);
-              if ($qr->rowCount() > 0) {
+              if ($qr->rowCount() > 0 or isset($_FILES['imagem'])) {
                 if (isset($_FILES['imagem'])) {
-                  $imagem = $_FILES['imagem'];
-                  $ext = strchr($imagem['name'],'.');
-                  $tipo = $imagem['type'];
+                  if (isset($_FILES['imagem']['name']) and $_FILES['imagem']['name'] != '') {
+                    $imagem = $_FILES['imagem'];
+                    $ext = strchr($imagem['name'],'.');
+                    $tipo = $imagem['type'];
 
-                  $tipos = [
-                    'image/asdf',
-                    'image/jpeg',
-                    'image/jpg',
-                    'image/png'
-                  ];
-                  $exts = [
-                    '.asdf',
-                    '.jpg',
-                    '.png'
-                  ];
-                  if (array_search($ext,$exts) and array_search($tipo,$tipos)) {
-                    $pasta = (isset(Admin::$controle::$pasta)) ? Admin::$controle::$pasta : self::$pasta;
-                    if (!file_exists($pasta.self::$tabela)) {
-                      mkdir($pasta.self::$tabela);
-                    }
-                    if (move_uploaded_file($imagem['tmp_name'],$pasta.self::$tabela.'/'.Criptografar::md5($imagem['name'].time()).$ext)) {
-                      DB::executar("UPDATE ".self::$tabela." SET imagem='".Criptografar::md5($imagem['name'].time()).$ext."' WHERE id=0".$id);
-                      echo "<p class='text-success'>Alterado com sucesso</p>";
+                    $tipos = [
+                      'image/asdf',
+                      'image/jpeg',
+                      'image/jpg',
+                      'image/png'
+                    ];
+                    $exts = [
+                      '.asdf',
+                      '.jpg',
+                      '.png'
+                    ];
+                    if (array_search($ext,$exts) and array_search($tipo,$tipos)) {
+                      $pasta = (isset(Admin::$controle::$pasta)) ? Admin::$controle::$pasta : self::$pasta;
+                      if (!file_exists($pasta.self::$tabela)) {
+                        mkdir($pasta.self::$tabela);
+                      }
+
+                      $nomeimg = Criptografar::md5($imagem['name'].time()).$ext;
+                      if (move_uploaded_file($imagem['tmp_name'],$pasta.self::$tabela.'/'.$nomeimg)) {
+                        DB::executar("UPDATE ".self::$tabela." SET imagem='".$nomeimg."' WHERE id=0".$id);
+                        echo "<p class='text-success'>Alterado com sucesso</p>";
+                      } else {
+                        echo "<p class='text-danger'>Erro ao alterar</p>";
+                      }
                     } else {
                       echo "<p class='text-danger'>Erro ao alterar</p>";
                     }
                   } else {
-                    echo "<p class='text-danger'>Erro ao alterar</p>";
+                    echo "<p class='text-success'>Alterado com sucesso</p>";
                   }
                 } else {
                   echo "<p class='text-success'>Alterado com sucesso</p>";
@@ -208,7 +223,11 @@
               $post = [];
               foreach ($_POST as $key => $value) {
                 if ($key != 'imagem') {
-                  $post[] = "'$value'";
+                  if ($key == 'senha') {
+                    $post[] = "'".Criptografar::md5($value)."'";
+                  } else {
+                    $post[] = "'$value'";
+                  }
                 }
               }
               foreach (array_keys($_POST) as $key => $value) {
@@ -217,43 +236,50 @@
                 }
               }
               $sql = "INSERT INTO ".self::$tabela." (".implode(',',$p).") VALUES (".implode(',',$post).")";
+              // mostrar($sql);
               $qr  = DB::executar($sql);
               if ($qr->rowCount() > 0) {
                 if (isset($_FILES['imagem'])) {
-                  $l = DB::executar("SELECT * FROM ".self::$tabela." WHERE imagem IS NULL ORDER BY id DESC");
-                  $r = $l->fetch(PDO::FETCH_OBJ);
-                  $id = $r->id;
-                  $imagem = $_FILES['imagem'];
-                  $ext = strchr($imagem['name'],'.');
-                  $tipo = $imagem['type'];
+                  if (isset($_FILES['imagem']['name']) and $_FILES['imagem']['name'] != '') {
+                    $l = DB::executar("SELECT * FROM ".self::$tabela." WHERE (imagem IS NULL or imagem = '') ORDER BY id DESC");
+                    $r = $l->fetch(PDO::FETCH_OBJ);
+                    $id = $r->id;
+                    $imagem = $_FILES['imagem'];
+                    $ext = strchr($imagem['name'],'.');
+                    $tipo = $imagem['type'];
 
-                  $tipos = [
-                    'image/asd',
-                    'image/jpeg',
-                    'image/jpg',
-                    'image/png'
-                  ];
-                  $exts = [
-                    '.asd',
-                    '.jpg',
-                    '.png'
-                  ];
-                  if (array_search($ext,$exts) and array_search($tipo,$tipos)) {
-                    $pasta = (isset(Admin::$controle::$pasta)) ? Admin::$controle::$pasta : self::$pasta;
-                    if (!file_exists($pasta.self::$tabela)) {
-                      mkdir($pasta.self::$tabela);
-                    }
-                    if (move_uploaded_file($imagem['tmp_name'],$pasta.self::$tabela.'/'.Criptografar::md5($imagem['name'].time()).$ext)) {
-                      DB::executar("UPDATE ".self::$tabela." SET imagem='".Criptografar::md5($imagem['name'].time()).$ext."' WHERE id=0".$id);
-                      echo "<p class='text-success'>Inserido com sucesso</p>";
+                    $tipos = [
+                      'image/asd',
+                      'image/jpeg',
+                      'image/jpg',
+                      'image/png'
+                    ];
+                    $exts = [
+                      '.asd',
+                      '.jpg',
+                      '.jpg',
+                      '.png'
+                    ];
+                    if (array_search($ext,$exts) and array_search($tipo,$tipos)) {
+                      $pasta = (isset(Admin::$controle::$pasta)) ? Admin::$controle::$pasta : self::$pasta;
+                      if (!file_exists($pasta.self::$tabela)) {
+                        mkdir($pasta.self::$tabela);
+                      }
+                      $nomeimg = Criptografar::md5($imagem['name'].time()).$ext;
+                      if (move_uploaded_file($imagem['tmp_name'],$pasta.self::$tabela.'/'.$nomeimg)) {
+                        DB::executar("UPDATE ".self::$tabela." SET imagem='".$nomeimg."' WHERE id=0".$id);
+                        echo "<p class='text-success'>Inserido com sucesso</p>";
+                      } else {
+                        DB::executar("DELETE FROM ".self::$tabela." WHERE id=0".$id);
+                        echo "<p class='text-danger'>Erro ao inserir</p>";
+                      }
                     } else {
+                      echo "$ext - $tipo";
                       DB::executar("DELETE FROM ".self::$tabela." WHERE id=0".$id);
                       echo "<p class='text-danger'>Erro ao inserir</p>";
                     }
                   } else {
-                    echo "$ext - $tipo";
-                    DB::executar("DELETE FROM ".self::$tabela." WHERE id=0".$id);
-                    echo "<p class='text-danger'>Erro ao inserir</p>";
+                    echo "<p class='text-success'>Inserido com sucesso</p>";
                   }
                 } else {
                   echo "<p class='text-success'>Inserido com sucesso</p>";
@@ -306,6 +332,16 @@
                   <?php
                   break;
 
+                  case 'boleano':
+                  $msg  = '';
+                  $msg .= "<div class='input-group {$campo['divClass']}'>";
+                  $msg .= "<label>{$campo['nome']}</label><br>";
+                  $msg .= "<input type='radio' id='{$campo['tipo']}_{$campo['campo']}' name='{$campo['campo']}' value='1' ".($dados[$nome] == 1 ? 'checked' : '')."> Sim<br>";
+                  $msg .= "<input type='radio' id='{$campo['tipo']}_{$campo['campo']}' name='{$campo['campo']}' value='0' ".($dados[$nome] == 0 ? 'checked' : '')."> Não<br>";
+                  $msg .= "</div>";
+                  echo $msg;
+                  break;
+
                   case 'select':
                     echo "<div class='input-group {$campo['divClass']}'>";
                     echo "<label for='{$campo['tipo']}_{$campo['campo']}'>{$campo['nome']}</label>";
@@ -315,6 +351,7 @@
                       $qr  = DB::executar($sql);
                       echo "<select name='{$campo['campo']}' class='form-control'>";
                       if ($qr->rowCount() > 0) {
+                        echo "<option value='0'>--------</option>";
                         while ($r = $qr->fetch(PDO::FETCH_ASSOC)) {
                           if (isset($_GET['id'])) {
                               if ($dados[$nome] == $r['id']) {
