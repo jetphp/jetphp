@@ -29,4 +29,4 @@ composer instalar
 v1.1-dev
 ```
 
-* OBS: * recomendo aguardar uma versão estável para não ter nenhum problema de compatibilidade ou falta de ferramentas!
+** OBS: ** recomendo aguardar uma versão estável para não ter nenhum problema de compatibilidade ou falta de ferramentas!
