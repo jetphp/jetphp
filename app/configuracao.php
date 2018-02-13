@@ -23,4 +23,9 @@
   Config::adicionar('DB_USUARIO','usuario');
   Config::adicionar('DB_SENHA','senha');
   Config::adicionar('DB_NOME','jetphp');
+
+  Config::adicionar('SMTP_HOST','smtp.exemplo.com');
+  Config::adicionar('SMTP_USUARIO','usuario');
+  Config::adicionar('SMTP_SENHA','senha');
+  Config::adicionar('SMTP_EMAILPRINCIPAL','email@exemplo.com');
 ?>
