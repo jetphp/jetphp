@@ -26,5 +26,7 @@ composer instalar
 ### Versão
 
 ```
-v0.8-dev
+v1.1-dev
 ```
+
+* OBS: * recomendo aguardar uma versão estável para não ter nenhum problema de compatibilidade ou falta de ferramentas!
