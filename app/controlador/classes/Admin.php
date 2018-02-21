@@ -19,8 +19,8 @@
       if (isset($_SESSION['dados'])) {
         $sql = "SELECT * FROM administrador_usuarios WHERE id=0".$_SESSION['dados'];
         $qr  = DB::executar($sql);
-        if ($qr->rowCount() > 0) {
-          $r = $qr->fetch(PDO::FETCH_OBJ);
+        if ($qr->generico()->rowCount() > 0) {
+          $r = $qr->generico()->fetch(PDO::FETCH_OBJ);
           return $r->$campo;
         }
       } else {
@@ -31,8 +31,8 @@
     public static function secao($pagina) {
       $sql = "SELECT * FROM administrador_secao WHERE pagina='$pagina' AND nivel >= 0".self::mostrar('nivel');
       $qr  = DB::executar($sql);
-      if ($qr->rowCount() > 0) {
-        $r = $qr->fetch(PDO::FETCH_OBJ);
+      if ($qr->generico()->rowCount() > 0) {
+        $r = $qr->generico()->fetch(PDO::FETCH_OBJ);
         if (file_exists('app/controlador/admin/'.$r->controle.'.php')) {
           include 'app/controlador/admin/'.$r->controle.'.php';
           self::$controle = $r->controle;
@@ -50,9 +50,9 @@
         $dados = $_SESSION['dados'];
         $sql   = "SELECT * FROM administrador_secao WHERE nivel >= 0".self::mostrar('nivel')." ORDER BY ordem ASC";
         $qr    = DB::executar($sql);
-        if ($qr->rowCount() > 0) {
+        if ($qr->generico()->rowCount() > 0) {
           $menu = [];
-          while ($row = $qr->fetch(PDO::FETCH_ASSOC)) {
+          while ($row = $qr->generico()->fetch(PDO::FETCH_ASSOC)) {
             echo '
               <li>
                 <a href="'.Config::mostrar('PASTA_PADRAO').Config::mostrar('PASTA_ADMIN').$row['pagina'].'">
@@ -72,8 +72,8 @@
 
       $sql = "SELECT * FROM administrador_usuarios WHERE usuario='$usuario' and senha='$senha' and ativo=1";
       $qr  = DB::executar($sql);
-      if ($qr->rowCount() > 0) {
-        $r = $qr->fetch(PDO::FETCH_ASSOC);
+      if ($qr->generico()->rowCount() > 0) {
+        $r = $qr->generico()->fetch(PDO::FETCH_ASSOC);
         $_SESSION['dados'] = $r['id'];
         header('Location:'.Config::mostrar('PASTA_PADRAO').Config::mostrar('PASTA_ADMIN'));
         return ['status'=>true,'msg'=>'Logado com sucesso!'];

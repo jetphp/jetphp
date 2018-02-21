@@ -7,7 +7,7 @@
   // Configurações
 
   Config::adicionar('DEBUG',true);
-  Config::adicionar('md5_salt','jetphp_');
+  Config::adicionar('md5_salt','jetphp'); // O método Criptografar::md5($valor) irá retornar um md5("SALTDEFINIDO_$valor");
 
   Config::adicionar('TITULO','JetPHP');
   Config::adicionar('PASTA_PADRAO','/');
@@ -20,12 +20,13 @@
   Config::adicionar('PREFIXO_SITE','site_');
 
   Config::adicionar('DB_HOST','localhost');
-  Config::adicionar('DB_USUARIO','usuario');
-  Config::adicionar('DB_SENHA','senha');
+  Config::adicionar('DB_USUARIO','root');
+  Config::adicionar('DB_SENHA','');
   Config::adicionar('DB_NOME','jetphp');
 
   Config::adicionar('SMTP_HOST','smtp.exemplo.com');
   Config::adicionar('SMTP_USUARIO','usuario');
   Config::adicionar('SMTP_SENHA','senha');
   Config::adicionar('SMTP_EMAILPRINCIPAL','email@exemplo.com');
+  Config::adicionar('SMTP_PORTA', 587);
 ?>

@@ -17,7 +17,7 @@
       self::adicionarCampo('text',['usuario','Usuário'],'col-lg-12','LUI');
       self::adicionarCampo('text',['email','E-mail'],'col-lg-12','LUI');
       self::adicionarCampo('password',['senha','Senha'],'col-lg-12','UI');
-      self::adicionarCampo('number',['ativo','Ativo (0 = não; 1 = sim)'],'col-lg-12','UI');
+      self::adicionarCampo('boleano',['ativo','Ativo'],'col-lg-12','UI');
 
       self::mostrarCampos();
     }

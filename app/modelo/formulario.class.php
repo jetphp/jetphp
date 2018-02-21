@@ -67,8 +67,8 @@
               $qr  = DB::executar($sql);
               $msg .= "<select name='{$arr_nome[0]}' class='form-control'>";
               $msg .= "<option value='0'>--------</option>";
-              if ($qr->rowCount() > 0) {
-                while ($r = $qr->fetch(PDO::FETCH_ASSOC)) {
+              if ($qr->generico()->rowCount() > 0) {
+                while ($r = $qr->generico()->fetch(PDO::FETCH_ASSOC)) {
                   if (isset($_GET['id'])) {
                     if ($_GET['id'] == $r['id']) {
                       $sel = 'selected';
@@ -135,11 +135,11 @@
 
       $sql = "SELECT {$campos} FROM ".self::$tabela." {$where}";
       $qr  = DB::executar($sql);
-      if ($qr->rowCount() > 0) {
+      if ($qr->generico()->rowCount() > 0) {
         if ($id != null) {
-          return $qr->fetch(PDO::FETCH_ASSOC);
+          return $qr->generico()->fetch(PDO::FETCH_ASSOC);
         } else {
-          return $qr->fetchAll(PDO::FETCH_ASSOC);
+          return $qr->generico()->fetchAll(PDO::FETCH_ASSOC);
         }
       } else {
         return false;
@@ -174,7 +174,7 @@
               $qr  = DB::executar($sql);
               $id = Entrada::get('id');
               // mostrar($sql);
-              if ($qr->rowCount() > 0 or isset($_FILES['imagem'])) {
+              if ($qr->generico()->rowCount() > 0 or isset($_FILES['imagem'])) {
                 if (isset($_FILES['imagem'])) {
                   if (isset($_FILES['imagem']['name']) and $_FILES['imagem']['name'] != '') {
                     $imagem = $_FILES['imagem'];
@@ -238,7 +238,7 @@
               $sql = "INSERT INTO ".self::$tabela." (".implode(',',$p).") VALUES (".implode(',',$post).")";
               // mostrar($sql);
               $qr  = DB::executar($sql);
-              if ($qr->rowCount() > 0) {
+              if ($qr->generico()->rowCount() > 0) {
                 if (isset($_FILES['imagem'])) {
                   if (isset($_FILES['imagem']['name']) and $_FILES['imagem']['name'] != '') {
                     $l = DB::executar("SELECT * FROM ".self::$tabela." WHERE (imagem IS NULL or imagem = '') ORDER BY id DESC");
@@ -350,9 +350,9 @@
                       $sql = "SELECT * FROM {$campo['tabela']}";
                       $qr  = DB::executar($sql);
                       echo "<select name='{$campo['campo']}' class='form-control'>";
-                      if ($qr->rowCount() > 0) {
+                      if ($qr->generico()->rowCount() > 0) {
                         echo "<option value='0'>--------</option>";
-                        while ($r = $qr->fetch(PDO::FETCH_ASSOC)) {
+                        while ($r = $qr->generico()->fetch(PDO::FETCH_ASSOC)) {
                           if (isset($_GET['id'])) {
                               if ($dados[$nome] == $r['id']) {
                               $sel = 'selected';
@@ -460,7 +460,7 @@
       } else if ($acao == 'remover' and isset($_GET['id'])) {
         $id = Entrada::get('id');
         $sql = "DELETE FROM ".self::$tabela. " WHERE id=0".$id;
-        if (DB::executar($sql)->rowCount() > 0) {
+        if (DB::executar($sql)->generico()->rowCount() > 0) {
           echo "<p class='text-success'>Deletado com sucesso.</p>";
         } else {
           echo "<p class='text-danger'>Erro ao remover</p>";

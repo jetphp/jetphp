@@ -16,7 +16,7 @@
       self::$email->SMTPSecure = 'tls';
       self::$email->Username = Config::mostrar('SMTP_USUARIO');
       self::$email->Password = Config::mostrar('SMTP_SENHA');
-      self::$email->Port = 587;
+      self::$email->Port = Config::mostrar('SMTP_PORTA');
       self::$email->setFrom(Config::mostrar('SMTP_EMAILPRINCIPAL'),Config::mostrar('TITULO'));
       self::$email->isHTML(true);
     }
