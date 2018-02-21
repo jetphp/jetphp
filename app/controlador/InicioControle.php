@@ -10,6 +10,7 @@
       SEO::adicionar('descricao','JetPHP é um framework simples, cujo cunho é o desenvolvimento de sites e sistemas e geral.');
       SEO::adicionar('keywords','jetphp, joao artur');
 
+      $jc = new JCaptcha();
       if (file_exists('vendor/autoload.php')) {
         Carregar::view('site.inicio');
       } else {
