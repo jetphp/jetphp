@@ -4,7 +4,7 @@
   * @description www.joaoartur.com - www.github.com/JoaoArtur
   * @version 1.5-dev
   */
-  
+
   class DBE {
     public function __construct() {
       $qr_e = DB::executar("SHOW TABLES");
@@ -21,15 +21,15 @@
       }
     }
 
-    public function mostrar($tipo=null,$tipo_pdo=PDO::FETCH_OBJ) {
+    public function mostrar($tipo=false,$tipo_pdo=PDO::FETCH_OBJ) {
       $sql = "SELECT * FROM {$this->atual} ";
       if (is_numeric($tipo)) { // ID único
         $sql .= " WHERE id=$tipo";
         $qr = DB::executar($sql)->generico()->fetch($tipo_pdo);
+      } elseif ($tipo == 'todos') { // Retornar todos os registros
+        $qr = DB::executar($sql)->generico()->fetchAll($tipo_pdo);
       } elseif ($tipo == false) { // Retornar único registro
         $qr = DB::executar($sql)->generico()->fetch($tipo_pdo);
-      } elseif ($tipo == null) { // Retornar todos os registros
-        $qr = DB::executar($sql)->generico()->fetchAll($tipo_pdo);
       } else {}
       return $qr;
     }
