@@ -6,6 +6,8 @@
   */
 
   class DBE {
+    public $where = '';
+    public $join = '';
     public function __construct() {
       $qr_e = DB::executar("SHOW TABLES");
       if ($qr_e::contar() > 0) {
@@ -20,17 +22,29 @@
         }
       }
     }
-
-    public function mostrar($tipo=false,$tipo_pdo=PDO::FETCH_OBJ) {
-      $sql = "SELECT * FROM {$this->atual} ";
+    public function where($w) {
+      $this->where = $w;
+      return $this;
+    }
+    public function join($t) {
+      $this->join = $t;
+      return $this;
+    }
+    public function mostrar($tipo=null,$tipo_pdo=PDO::FETCH_OBJ) {
+      $sql = "SELECT * FROM {$this->atual} {$this->join} WHERE 1=1";
+      if ($this->where != '' and $this->where != null) {
+        $sql .= " AND {$this->where}";
+      }
       if (is_numeric($tipo)) { // ID único
-        $sql .= " WHERE id=$tipo";
+        $sql .= " and {$this->atual}.id=$tipo";
         $qr = DB::executar($sql)->generico()->fetch($tipo_pdo);
       } elseif ($tipo == 'todos') { // Retornar todos os registros
         $qr = DB::executar($sql)->generico()->fetchAll($tipo_pdo);
       } elseif ($tipo == false) { // Retornar único registro
         $qr = DB::executar($sql)->generico()->fetch($tipo_pdo);
       } else {}
+      $this->where = '';
+      $this->join = '';
       return $qr;
     }
   }
@@ -45,6 +59,6 @@
     $NomeTabela = $dbe->NomeTabela;
     3º - Utilize um dos 3 tipos de retorno:
     $NomeTabela()->mostrar(1); // Lista dados a partir do ID
-    $NomeTabela()->mostrar(); // Lista um único registro, de forma que fique mais prático executar usando while
-    $NomeTabela()->mostrar('todos'); // Lista todos os registros
+    $NomeTabela()->mostrar(false); // Lista um único registro, de forma que fique mais prático executar usando while
+    $NomeTabela()->mostrar(); // Lista todos os registros
   */
