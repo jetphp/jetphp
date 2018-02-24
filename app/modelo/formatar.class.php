@@ -19,5 +19,18 @@
     public static function dinheiro($dinheiro) {
       return Config::mostrar('moeda').' '.number_format($dinheiro,2,',','.');
     }
+    public static function limitar($texto,$limite) {
+      $l = str_split($texto);
+      $msg = '';
+      for ($i=0; $i < $limite; $i++) { 
+        if (isset($l[$i])) {
+          $msg.= $l[$i];
+        }
+      }
+      if (count($l) >= $limite) {
+        $msg.= "...";
+      }
+      return $msg;
+    }
   }
 ?>
