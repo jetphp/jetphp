@@ -45,6 +45,6 @@
     $NomeTabela = $dbe->NomeTabela;
     3º - Utilize um dos 3 tipos de retorno:
     $NomeTabela()->mostrar(1); // Lista dados a partir do ID
-    $NomeTabela()->mostrar(false); // Lista um único registro, de forma que fique mais prático executar usando while
-    $NomeTabela()->mostrar(); // Lista todos os registros
+    $NomeTabela()->mostrar(); // Lista um único registro, de forma que fique mais prático executar usando while
+    $NomeTabela()->mostrar('todos'); // Lista todos os registros
   */
