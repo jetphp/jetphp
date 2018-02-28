@@ -19,6 +19,14 @@
           "unzip app/visual/admin.zip -d app/visual/",
           "rm app/visual/admin.zip"
     	]
-    }
+    },
+    
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 
 }
