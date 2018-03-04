@@ -242,7 +242,7 @@
                 if (isset($_FILES['imagem'])) {
                   if (isset($_FILES['imagem']['name']) and $_FILES['imagem']['name'] != '') {
                     $l = DB::executar("SELECT * FROM ".self::$tabela." WHERE (imagem IS NULL or imagem = '') ORDER BY id DESC");
-                    $r = $l->fetch(PDO::FETCH_OBJ);
+                    $r = $l->generico()->fetch(PDO::FETCH_OBJ);
                     $id = $r->id;
                     $imagem = $_FILES['imagem'];
                     $ext = strchr($imagem['name'],'.');
