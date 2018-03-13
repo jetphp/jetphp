@@ -3,6 +3,7 @@
     "description": "JetPHP - Framework gaúcho.",
     "type": "library",
     "license": "MIT",
+    "version": "1.5.9",
     "authors": [
         {
             "name": "João Artur",
