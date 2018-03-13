@@ -18,5 +18,7 @@
   if (Config::mostrar('DEBUG')) {
     ini_set('display_errors',1);
   }
+
+
   new JoaoArtur;
 ?>

@@ -18,4 +18,6 @@
 
   Rota::adicionar('docs/:titulo/:pagina', 'index@DocsControle');
   Rota::adicionar('docs/', 'redirecionar@DocsControle');
+
+  Rota::adicionar('captchaGerar', 'captcha@AdministradorControle');
 ?>
