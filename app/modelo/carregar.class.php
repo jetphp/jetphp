@@ -6,7 +6,7 @@
 
   // Modelo de bancos de dados
 
-  abstract class Carregar {
+  abstract class Load {
     public static $css = [];
     public static $js  = [];
 
@@ -36,7 +36,7 @@
       }
     }
 
-    public static function classe($classe) {
+    public static function class($classe) {
       $arq = "app/controlador/classes/$classe.php";
       if (file_exists($arq)) {
         include $arq;

@@ -38,10 +38,10 @@
           self::$controle = $r->controle;
           new $r->controle;
         } else {
-          Carregar::view('erro.404');
+          Load::view('erro.404');
         }
       } else {
-        Carregar::view('erro.404');
+        Load::view('erro.404');
       }
     }
 

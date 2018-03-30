@@ -6,7 +6,7 @@
 
   class AdministradorControle extends Controle {
     public function __construct() {
-      Carregar::classe('Admin');
+      Load::class('Admin');
     }
 
     public static function pagina($pagina=null) {
@@ -29,7 +29,7 @@
         } else {
           $arr_logar = [];
         }
-        Carregar::view('admin.login',$arr_logar,true,false);
+        Load::view('admin.login',$arr_logar,true,false);
       }
     }
   }

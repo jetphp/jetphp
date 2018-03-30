@@ -7,8 +7,6 @@
   // Modelo do controle
 
   class Controle {
-    public function teste() {
-      echo "askdjhlasdljaslkdjajslkdj";
-    }
+    // Em breve
   }
 ?>

@@ -8,11 +8,11 @@
 
   class InstalacaoControle extends Controle {
     public static function index() {
-      SEO::adicionar('titulo','Instalação - JetPHP');
-      SEO::adicionar('descricao','JetPHP é um framework simples, cujo cunho é o desenvolvimento de sites e sistemas e geral.');
-      SEO::adicionar('keywords','jetphp, joao artur');
+      SEO::add('titulo','Instalação - JetPHP');
+      SEO::add('descricao','JetPHP é um framework simples, cujo cunho é o desenvolvimento de sites e sistemas e geral.');
+      SEO::add('keywords','jetphp, joao artur');
 
-      Carregar::view('instalar.introducao');
+      Load::view('instalar.introducao');
     }
   }
 ?>

@@ -66,10 +66,10 @@
             $cont = new $cont();
             $cont::$func();
           } else {
-            Carregar::view('erro.404');
+            Load::view('erro.404');
           }
         } else {
-          Carregar::view('erro.404');
+          Load::view('erro.404');
         }
       }
     }
@@ -107,7 +107,7 @@
               }
             }
             if (isset($erro) and $erro) {
-              Carregar::view('erro.404');
+              Load::view('erro.404');
             } else {
               $rota = self::$rota[$arr_chave[$pesquisar]];
               $rota = explode('@',$rota);
@@ -120,15 +120,15 @@
                 $cont = new $cont();
                 $cont::$func();
               } else {
-                Carregar::view('erro.404');
+                Load::view('erro.404');
               }
             }
           } else {
-            Carregar::view('erro.404');
+            Load::view('erro.404');
           }
         } else {
           if (!isset($_SESSION['caminho'])) {
-            Carregar::view('erro.404');
+            Load::view('erro.404');
           }
 
         }

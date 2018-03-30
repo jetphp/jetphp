@@ -8,17 +8,17 @@
 
   abstract class SEO {
     public static $seo = [];
-    public static function adicionar($nome,$conteudo) {
+    public static function add($nome,$conteudo) {
       self::$seo[$nome] = $conteudo;
     }
-    public static function mostrar($nome) {
+    public static function show($nome) {
       if (isset(self::$seo[$nome])) {
         return self::$seo[$nome];
       } else {
         return false;
       }
     }
-    public static function montar() {
+    public static function ready() {
       if (count(self::$seo) > 0) {
         foreach (self::$seo as $nome => $valor) {
           switch ($nome) {
