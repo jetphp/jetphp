@@ -9,13 +9,3 @@
         </div>
       </div>
     </div>
-<form class="" action="" method="post">
-  <div class="row">
-    <div class="col-md-3">
-      <input type="text" name="usuario" class="form-control" placeholder="Digite seu nome">
-    </div>
-  </div>
-  <?php JCaptchaInput::gerarCampo(); ?>
-  <input type="submit" name="" value="Enviar" class="btn btn-success">
-</form>
-<?php if (isset($_POST['usuario'])) {echo Entrada::post('usuario');} ?>
