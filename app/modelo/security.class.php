@@ -6,7 +6,7 @@
 
   // Modelo de Segurança
 
-  abstract class Seguranca {
+  abstract class Security {
     public static function antisql($texto) {
       return htmlspecialchars(str_replace([
         "'",

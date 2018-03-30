@@ -7,7 +7,7 @@
   class JoaoArtur {
 
     public function __construct() {
-      Rota::carregar(Config::mostrar('PASTA_PADRAO').self::rotaAtual());
+      Route::load(Config::mostrar('PASTA_PADRAO').self::rotaAtual());
     }
 
     public static function rotaAtual() {

@@ -4,20 +4,20 @@
   * @description www.joaoartur.com - www.github.com/JoaoArtur
   */
 
-  // Rotas
+  // Routes
 
-  Rota::adicionar('/','index@InicioControle');
+  Route::add('/','index@InicioControle');
 
   // Gerenciador - não remover
-  Rota::adicionar(Config::mostrar('PASTA_ADMIN').':pagina','pagina@AdministradorControle');
-  Rota::adicionar(Config::mostrar('PASTA_ADMIN').'','index@AdministradorControle');
+  Route::add(Config::mostrar('PASTA_ADMIN').':pagina','pagina@AdministradorControle');
+  Route::add(Config::mostrar('PASTA_ADMIN').'','index@AdministradorControle');
 
-  // Rota de instalação, remover após instalar
-  Rota::adicionar('instalacao','index@InstalacaoControle');
+  // Route de instalação, remover após instalar
+  Route::add('instalacao','index@InstalacaoControle');
 
 
-  Rota::adicionar('docs/:titulo/:pagina', 'index@DocsControle');
-  Rota::adicionar('docs/', 'redirecionar@DocsControle');
+  Route::add('docs/:titulo/:pagina', 'index@DocsControle');
+  Route::add('docs/', 'redirecionar@DocsControle');
 
-  Rota::adicionar('captchaGerar', 'captcha@AdministradorControle');
+  Route::add('captchaGerar', 'captcha@AdministradorControle');
 ?>

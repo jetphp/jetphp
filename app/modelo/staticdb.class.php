@@ -5,7 +5,7 @@
   * @version 1.5-dev
   */
 
-  class DBE {
+  class StaticDB {
     public $where = '';
     public $join = '';
     public function __construct() {

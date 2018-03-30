@@ -6,14 +6,14 @@
 
   // Modelo de rotas
 
-  abstract class Rota {
+  abstract class Route {
     public static $rota = [];
 
-    public static function adicionar($caminho,$acao) {
+    public static function add($caminho,$acao) {
       self::$rota[$caminho] = $acao;
     }
 
-    public static function carregar($caminho) {
+    public static function load($caminho) {
       if (Config::mostrar('PASTA_PADRAO') == '/') {
         $caminho = explode('/',$caminho);
         $c       = '';
@@ -40,7 +40,7 @@
               if ($key != count($var)-1) {
                 $cam.='/';
               }
-              if (self::verificar($cam,true)) {
+              if (self::check($cam,true)) {
                 $temvar = true;
                 $rotaatual = $cam;
               } else {
@@ -55,7 +55,7 @@
         $caminho = str_replace(Config::mostrar('PASTA_PADRAO'),'',$caminho);
       }
       if (isset($rotaatual)) {} else {
-        $rota = self::verificar($caminho);
+        $rota = self::check($caminho);
         if ($rota) {
           $rota = explode('@',$rota);
           $func = $rota[0];
@@ -74,7 +74,7 @@
       }
     }
 
-    private static function verificar($caminho,$pesquisa=false) {
+    private static function check($caminho,$pesquisa=false) {
       if ($pesquisa) {
         $chaves = array_keys(self::$rota);
         $arr_chaves = [];
@@ -141,7 +141,7 @@
       }
     }
 
-    public static function mostrar() {
+    public static function show() {
       return self::$rota;
     }
   }

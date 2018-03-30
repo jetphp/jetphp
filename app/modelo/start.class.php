@@ -6,7 +6,7 @@
 
   // Modelo de Entrada
 
-  abstract class Entrada {
+  abstract class Start {
     public static function get($texto) {
       if (isset($_GET[$texto])) {
         return Seguranca::antisql($_GET[$texto]);
