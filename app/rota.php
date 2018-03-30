@@ -9,8 +9,8 @@
   Route::add('/','index@InicioControle');
 
   // Gerenciador - não remover
-  Route::add(Config::mostrar('PASTA_ADMIN').':pagina','pagina@AdministradorControle');
-  Route::add(Config::mostrar('PASTA_ADMIN').'','index@AdministradorControle');
+  Route::add(Config::show('PASTA_ADMIN').':pagina','pagina@AdministradorControle');
+  Route::add(Config::show('PASTA_ADMIN').'','index@AdministradorControle');
 
   // Route de instalação, remover após instalar
   Route::add('instalacao','index@InstalacaoControle');

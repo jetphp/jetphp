@@ -55,7 +55,7 @@
           while ($row = $qr->generico()->fetch(PDO::FETCH_ASSOC)) {
             echo '
               <li>
-                <a href="'.Config::mostrar('PASTA_PADRAO').Config::mostrar('PASTA_ADMIN').$row['pagina'].'">
+                <a href="'.Config::show('PASTA_PADRAO').Config::show('PASTA_ADMIN').$row['pagina'].'">
                   <i class="fa '.$row['icone'].'"></i>
                   '.$row['nome'].'
                 </a>
@@ -75,7 +75,7 @@
       if ($qr->generico()->rowCount() > 0) {
         $r = $qr->generico()->fetch(PDO::FETCH_ASSOC);
         $_SESSION['dados'] = $r['id'];
-        header('Location:'.Config::mostrar('PASTA_PADRAO').Config::mostrar('PASTA_ADMIN'));
+        header('Location:'.Config::show('PASTA_PADRAO').Config::show('PASTA_ADMIN'));
         return ['status'=>true,'msg'=>'Logado com sucesso!'];
       } else {
         return ['status'=>false,'msg'=>'Usuário e/ou senha incorretos'];

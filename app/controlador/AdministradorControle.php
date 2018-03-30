@@ -16,7 +16,7 @@
         }
         Admin::secao($pagina);
       } else {
-        header('Location:'.Config::mostrar('PASTA_PADRAO').Config::mostrar('PASTA_ADMIN'));
+        header('Location:'.Config::show('PASTA_PADRAO').Config::show('PASTA_ADMIN'));
       }
     }
 

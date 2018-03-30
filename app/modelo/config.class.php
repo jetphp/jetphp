@@ -9,11 +9,11 @@
   abstract class Config {
     public static $config = [];
 
-    public static function adicionar($nome,$valor) {
+    public static function add($nome,$valor) {
       self::$config[$nome] = $valor;
     }
 
-    public static function mostrar($nome) {
+    public static function show($nome) {
       if (isset(self::$config[$nome])) {
         return self::$config[$nome];
       } else {
@@ -22,7 +22,7 @@
     }
 
     public static function url($pasta='') {
-      return 'http://'.$_SERVER['HTTP_HOST'].Config::mostrar('PASTA_PADRAO').$pasta;
+      return 'http://'.$_SERVER['HTTP_HOST'].Config::show('PASTA_PADRAO').$pasta;
     }
   }
 ?>

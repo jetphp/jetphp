@@ -17,7 +17,7 @@
       return date('Y-m-d',strtotime($data));
     }
     public static function dinheiro($dinheiro) {
-      return Config::mostrar('moeda').' '.number_format($dinheiro,2,',','.');
+      return Config::show('moeda').' '.number_format($dinheiro,2,',','.');
     }
     public static function limitar($texto,$limite) {
       $l = str_split($texto);

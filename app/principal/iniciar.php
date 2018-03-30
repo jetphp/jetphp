@@ -15,7 +15,7 @@
   include 'app/rota.php';
   include 'app/principal/joaoartur.php';
 
-  if (Config::mostrar('DEBUG')) {
+  if (Config::show('DEBUG')) {
     ini_set('display_errors',1);
   }
 

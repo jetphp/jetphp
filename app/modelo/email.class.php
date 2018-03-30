@@ -11,13 +11,13 @@
     public function email() {
       self::$email = new PHPMailer();
       self::$email->isSMTP();
-      self::$email->Host = Config::mostrar('SMTP_HOST');
+      self::$email->Host = Config::show('SMTP_HOST');
       self::$email->SMTPAuth = true;
       self::$email->SMTPSecure = 'tls';
-      self::$email->Username = Config::mostrar('SMTP_USUARIO');
-      self::$email->Password = Config::mostrar('SMTP_SENHA');
-      self::$email->Port = Config::mostrar('SMTP_PORTA');
-      self::$email->setFrom(Config::mostrar('SMTP_EMAILPRINCIPAL'),Config::mostrar('TITULO'));
+      self::$email->Username = Config::show('SMTP_USUARIO');
+      self::$email->Password = Config::show('SMTP_SENHA');
+      self::$email->Port = Config::show('SMTP_PORTA');
+      self::$email->setFrom(Config::show('SMTP_EMAILPRINCIPAL'),Config::show('TITULO'));
       self::$email->isHTML(true);
     }
     public function adicionarDestinatario($destinatario) {

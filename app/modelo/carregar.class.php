@@ -45,18 +45,18 @@
 
     public static function css($arq,$admin=false) {
       if ($admin) {
-        $misc = Config::mostrar('ADMIN_MISC');
+        $misc = Config::show('ADMIN_MISC');
       } else {
-        $misc = Config::mostrar('PASTA_MISC');
+        $misc = Config::show('PASTA_MISC');
       }
       self::$css[] = '<link rel="stylesheet" type="text/css" href="'.$misc.'css/'.$arq.'">';
     }
 
     public static function js($arq,$admin=false) {
       if ($admin) {
-        $misc = Config::mostrar('ADMIN_MISC');
+        $misc = Config::show('ADMIN_MISC');
       } else {
-        $misc = Config::mostrar('PASTA_MISC');
+        $misc = Config::show('PASTA_MISC');
       }
       self::$js[] = '<script src="'.$misc.'js/'.$arq.'"></script>';
     }

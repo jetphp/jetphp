@@ -7,12 +7,12 @@
   class JoaoArtur {
 
     public function __construct() {
-      Route::load(Config::mostrar('PASTA_PADRAO').self::rotaAtual());
+      Route::load(Config::show('PASTA_PADRAO').self::rotaAtual());
     }
 
     public static function rotaAtual() {
       $url = explode('?',$_SERVER['REQUEST_URI']);
-      $url = (Config::mostrar('PASTA_PADRAO') != '/')?str_replace(Config::mostrar('PASTA_PADRAO'),'',$url[0]):$url[0];
+      $url = (Config::show('PASTA_PADRAO') != '/')?str_replace(Config::show('PASTA_PADRAO'),'',$url[0]):$url[0];
       return $url;
     }
 

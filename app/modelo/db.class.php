@@ -15,7 +15,7 @@
         return true;
       } else {
         try {
-          self::$conexao = new PDO('mysql:host='.Config::mostrar('DB_HOST').';charset=utf8;dbname='.Config::mostrar('DB_NOME'),Config::mostrar('DB_USUARIO'),Config::mostrar('DB_SENHA'));
+          self::$conexao = new PDO('mysql:host='.Config::show('DB_HOST').';charset=utf8;dbname='.Config::show('DB_NOME'),Config::show('DB_USUARIO'),Config::show('DB_SENHA'));
           return true;
         } catch (PDOException $e) {
           echo "<p>Erro ao conectar no banco de dados: <b>".$e->getMessage()."</b></p>";

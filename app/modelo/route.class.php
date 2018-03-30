@@ -14,7 +14,7 @@
     }
 
     public static function load($caminho) {
-      if (Config::mostrar('PASTA_PADRAO') == '/') {
+      if (Config::show('PASTA_PADRAO') == '/') {
         $caminho = explode('/',$caminho);
         $c       = '';
         foreach ($caminho as $chave=>$valor) {
@@ -52,7 +52,7 @@
 
         $caminho = $c;
       } else {
-        $caminho = str_replace(Config::mostrar('PASTA_PADRAO'),'',$caminho);
+        $caminho = str_replace(Config::show('PASTA_PADRAO'),'',$caminho);
       }
       if (isset($rotaatual)) {} else {
         $rota = self::check($caminho);

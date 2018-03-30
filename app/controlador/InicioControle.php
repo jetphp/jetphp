@@ -13,7 +13,7 @@
       if (file_exists('vendor/autoload.php')) {
         Carregar::view('site.inicio');
       } else {
-        header('Location:'.Config::mostrar('PASTA_PADRAO').'instalacao');
+        header('Location:'.Config::show('PASTA_PADRAO').'instalacao');
       }
     }
   }

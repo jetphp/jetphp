@@ -427,7 +427,7 @@
                 ?><tr><?php
                 foreach (self::$campos as $chave => $cv) {
                   if ($cv['tipo'] == 'img') {
-                    $valor[$chave] = "<img class='img-responsive tr-img' src='".Config::mostrar('PASTA_PADRAO')."upload/".self::$tabela."/".$valor[$chave]."'>";
+                    $valor[$chave] = "<img class='img-responsive tr-img' src='".Config::show('PASTA_PADRAO')."upload/".self::$tabela."/".$valor[$chave]."'>";
                   }
                   ?>
                     <td><?php echo $valor[$chave]; ?></td>
