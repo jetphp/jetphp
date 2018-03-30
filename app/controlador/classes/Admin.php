@@ -18,7 +18,7 @@
     public static function mostrar($campo) {
       if (isset($_SESSION['dados'])) {
         $sql = "SELECT * FROM administrador_usuarios WHERE id=0".$_SESSION['dados'];
-        $qr  = DB::executar($sql);
+        $qr  = DB::execute($sql);
         if ($qr->generico()->rowCount() > 0) {
           $r = $qr->generico()->fetch(PDO::FETCH_OBJ);
           return $r->$campo;
@@ -30,7 +30,7 @@
 
     public static function secao($pagina) {
       $sql = "SELECT * FROM administrador_secao WHERE pagina='$pagina' AND nivel >= 0".self::mostrar('nivel');
-      $qr  = DB::executar($sql);
+      $qr  = DB::execute($sql);
       if ($qr->generico()->rowCount() > 0) {
         $r = $qr->generico()->fetch(PDO::FETCH_OBJ);
         if (file_exists('app/controlador/admin/'.$r->controle.'.php')) {
@@ -49,7 +49,7 @@
       if (self::logado()) {
         $dados = $_SESSION['dados'];
         $sql   = "SELECT * FROM administrador_secao WHERE nivel >= 0".self::mostrar('nivel')." ORDER BY ordem ASC";
-        $qr    = DB::executar($sql);
+        $qr    = DB::execute($sql);
         if ($qr->generico()->rowCount() > 0) {
           $menu = [];
           while ($row = $qr->generico()->fetch(PDO::FETCH_ASSOC)) {
@@ -71,7 +71,7 @@
       $senha   = Criptografar::md5(Entrada::post('senha'));
 
       $sql = "SELECT * FROM administrador_usuarios WHERE usuario='$usuario' and senha='$senha' and ativo=1";
-      $qr  = DB::executar($sql);
+      $qr  = DB::execute($sql);
       if ($qr->generico()->rowCount() > 0) {
         $r = $qr->generico()->fetch(PDO::FETCH_ASSOC);
         $_SESSION['dados'] = $r['id'];

@@ -9,9 +9,9 @@
     public $where = '';
     public $join = '';
     public function __construct() {
-      $qr_e = DB::executar("SHOW TABLES");
-      if ($qr_e::contar() > 0) {
-        while ($tabela = $qr_e::listar(PDO::FETCH_OBJ)) {
+      $qr_e = DB::execute("SHOW TABLES");
+      if ($qr_e::count() > 0) {
+        while ($tabela = $qr_e::list(PDO::FETCH_OBJ)) {
           foreach ($tabela as $nome) {
             $funcionalidades = $this;
             $this->$nome = function() use ($nome, &$funcionalidades) {
@@ -30,18 +30,18 @@
       $this->join = $t;
       return $this;
     }
-    public function mostrar($tipo=null,$tipo_pdo=PDO::FETCH_OBJ) {
+    public function show($tipo=null,$tipo_pdo=PDO::FETCH_OBJ) {
       $sql = "SELECT * FROM {$this->atual} {$this->join} WHERE 1=1";
       if ($this->where != '' and $this->where != null) {
         $sql .= " AND {$this->where}";
       }
       if (is_numeric($tipo)) { // ID único
         $sql .= " and {$this->atual}.id=$tipo";
-        $qr = DB::executar($sql)->generico()->fetch($tipo_pdo);
-      } elseif ($tipo == 'todos') { // Retornar todos os registros
-        $qr = DB::executar($sql)->generico()->fetchAll($tipo_pdo);
+        $qr = DB::execute($sql)->generico()->fetch($tipo_pdo);
+      } elseif ($tipo == 'all') { // Retornar todos os registros
+        $qr = DB::execute($sql)->generico()->fetchAll($tipo_pdo);
       } elseif ($tipo == false) { // Retornar único registro
-        $qr = DB::executar($sql)->generico()->fetch($tipo_pdo);
+        $qr = DB::execute($sql)->generico()->fetch($tipo_pdo);
       } else {}
       $this->where = '';
       $this->join = '';

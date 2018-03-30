@@ -21,7 +21,7 @@
 
   Config::add('DB_HOST','localhost');
   Config::add('DB_USUARIO','root');
-  Config::add('DB_SENHA','');
+  Config::add('DB_SENHA','jasolutions');
   Config::add('DB_NOME','jetphp');
 
   Config::add('SMTP_HOST','smtp.exemplo.com');

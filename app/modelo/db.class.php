@@ -10,7 +10,7 @@
     private static $conexao = null;
     private static $qr      = null;
 
-    private static function conectar() {
+    private static function connect() {
       if (self::$conexao != null) {
         return true;
       } else {
@@ -24,11 +24,11 @@
       }
     }
 
-    public static function contar() {
+    public static function count() {
       return self::$qr->rowCount();
     }
-    
-    public static function listar($tipo) {
+
+    public static function list($tipo=PDO::FETCH_OBJ) {
       return self::$qr->fetch($tipo);
     }
 
@@ -37,9 +37,14 @@
     }
 
 
-    public static function executar($sql) {
-      if (self::conectar()) {
+    public static function execute($sql, $bp='') {
+      if (self::connect()) {
         $qr = self::$conexao->prepare($sql);
+        if (is_array($bp)) {
+          foreach ($bp as $name=>$param) {
+            $qr->bindParam($name,$param);
+          }
+        }
         $qr->execute();
         self::$qr = $qr;
         return new self;

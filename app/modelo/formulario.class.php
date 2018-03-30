@@ -64,7 +64,7 @@
             $msg .= "<label for='{$tipo}_{$arr_nome[0]}'>{$arr_nome[1]}</label>";
             if (isset($arr_nome[2])) {
               $sql = "SELECT * FROM {$arr_nome[2]}";
-              $qr  = DB::executar($sql);
+              $qr  = DB::execute($sql);
               $msg .= "<select name='{$arr_nome[0]}' class='form-control'>";
               $msg .= "<option value='0'>--------</option>";
               if ($qr->generico()->rowCount() > 0) {
@@ -134,7 +134,7 @@
       $campos = implode(',',$chaves);
 
       $sql = "SELECT {$campos} FROM ".self::$tabela." {$where}";
-      $qr  = DB::executar($sql);
+      $qr  = DB::execute($sql);
       if ($qr->generico()->rowCount() > 0) {
         if ($id != null) {
           return $qr->generico()->fetch(PDO::FETCH_ASSOC);
@@ -171,7 +171,7 @@
           switch ($acao) {
             case 'alterar':
               $sql = "UPDATE ".self::$tabela." SET ".implode(',',$set)." WHERE $where";
-              $qr  = DB::executar($sql);
+              $qr  = DB::execute($sql);
               $id = Entrada::get('id');
               // mostrar($sql);
               if ($qr->generico()->rowCount() > 0 or isset($_FILES['imagem'])) {
@@ -200,7 +200,7 @@
 
                       $nomeimg = Criptografar::md5($imagem['name'].time()).$ext;
                       if (move_uploaded_file($imagem['tmp_name'],$pasta.self::$tabela.'/'.$nomeimg)) {
-                        DB::executar("UPDATE ".self::$tabela." SET imagem='".$nomeimg."' WHERE id=0".$id);
+                        DB::execute("UPDATE ".self::$tabela." SET imagem='".$nomeimg."' WHERE id=0".$id);
                         echo "<p class='text-success'>Alterado com sucesso</p>";
                       } else {
                         echo "<p class='text-danger'>Erro ao alterar</p>";
@@ -237,11 +237,11 @@
               }
               $sql = "INSERT INTO ".self::$tabela." (".implode(',',$p).") VALUES (".implode(',',$post).")";
               // mostrar($sql);
-              $qr  = DB::executar($sql);
+              $qr  = DB::execute($sql);
               if ($qr->generico()->rowCount() > 0) {
                 if (isset($_FILES['imagem'])) {
                   if (isset($_FILES['imagem']['name']) and $_FILES['imagem']['name'] != '') {
-                    $l = DB::executar("SELECT * FROM ".self::$tabela." WHERE (imagem IS NULL or imagem = '') ORDER BY id DESC");
+                    $l = DB::execute("SELECT * FROM ".self::$tabela." WHERE (imagem IS NULL or imagem = '') ORDER BY id DESC");
                     $r = $l->generico()->fetch(PDO::FETCH_OBJ);
                     $id = $r->id;
                     $imagem = $_FILES['imagem'];
@@ -267,15 +267,15 @@
                       }
                       $nomeimg = Criptografar::md5($imagem['name'].time()).$ext;
                       if (move_uploaded_file($imagem['tmp_name'],$pasta.self::$tabela.'/'.$nomeimg)) {
-                        DB::executar("UPDATE ".self::$tabela." SET imagem='".$nomeimg."' WHERE id=0".$id);
+                        DB::execute("UPDATE ".self::$tabela." SET imagem='".$nomeimg."' WHERE id=0".$id);
                         echo "<p class='text-success'>Inserido com sucesso</p>";
                       } else {
-                        DB::executar("DELETE FROM ".self::$tabela." WHERE id=0".$id);
+                        DB::execute("DELETE FROM ".self::$tabela." WHERE id=0".$id);
                         echo "<p class='text-danger'>Erro ao inserir</p>";
                       }
                     } else {
                       echo "$ext - $tipo";
-                      DB::executar("DELETE FROM ".self::$tabela." WHERE id=0".$id);
+                      DB::execute("DELETE FROM ".self::$tabela." WHERE id=0".$id);
                       echo "<p class='text-danger'>Erro ao inserir</p>";
                     }
                   } else {
@@ -348,7 +348,7 @@
 
                     if (isset($campo['tabela'])) {
                       $sql = "SELECT * FROM {$campo['tabela']}";
-                      $qr  = DB::executar($sql);
+                      $qr  = DB::execute($sql);
                       echo "<select name='{$campo['campo']}' class='form-control'>";
                       if ($qr->generico()->rowCount() > 0) {
                         echo "<option value='0'>--------</option>";
@@ -460,7 +460,7 @@
       } else if ($acao == 'remover' and isset($_GET['id'])) {
         $id = Entrada::get('id');
         $sql = "DELETE FROM ".self::$tabela. " WHERE id=0".$id;
-        if (DB::executar($sql)->generico()->rowCount() > 0) {
+        if (DB::execute($sql)->generico()->rowCount() > 0) {
           echo "<p class='text-success'>Deletado com sucesso.</p>";
         } else {
           echo "<p class='text-danger'>Erro ao remover</p>";
