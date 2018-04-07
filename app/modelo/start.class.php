@@ -9,17 +9,17 @@
   abstract class Start {
     public static function get($texto) {
       if (isset($_GET[$texto])) {
-        return Seguranca::antisql($_GET[$texto]);
+        return Security::antisql($_GET[$texto]);
       }
     }
     public static function session($texto) {
       if (isset($_SESSION[$texto])) {
-        return Seguranca::antisql($_SESSION[$texto]);
+        return Security::antisql($_SESSION[$texto]);
       }
     }
     public static function post($texto) {
       if (isset($_POST[$texto])) {
-        return Seguranca::antisql($_POST[$texto]);
+        return Security::antisql($_POST[$texto]);
       }
     }
   }

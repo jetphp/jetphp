@@ -12,7 +12,7 @@
     public static function pagina($pagina=null) {
       if (Admin::logado()) {
         if ($pagina == null) {
-          $pagina = Entrada::get('pagina');
+          $pagina = Start::get('pagina');
         }
         Admin::secao($pagina);
       } else {

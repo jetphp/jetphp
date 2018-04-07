@@ -1,0 +1,16 @@
+.form-control:first-child {
+  margin-top: 5px;
+}
+.btn {
+  margin: 2.5px;
+  border-radius: 0;
+}
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header {
+  height: auto !important;
+}
+.user-panel {
+  height: 30px !important;
+}
+.tr-img {
+  max-width: 64px;
+}

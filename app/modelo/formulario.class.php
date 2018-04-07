@@ -26,7 +26,7 @@
           self::$acaoformulario = 'UI';
         }
       }
-      self::$acao   = (isset($_GET['acao'])) ? Entrada::get('acao') : 'listar';
+      self::$acao   = (isset($_GET['acao'])) ? Start::get('acao') : 'listar';
       include 'app/visual/admin/inc/topo.phtml';
       include 'app/visual/admin/inc/menu.phtml';
       include 'app/visual/admin/inc/_base.phtml';
@@ -156,7 +156,7 @@
         foreach ($_POST as $key => $value) {
           if ($key != 'enviar' and $key != 'imagem') {
             if ($key == 'senha') {
-              $value = Criptografar::md5($value);
+              $value = Criptography::md5($value);
             }
             $set[] = "$key = '$value'";
           }
@@ -166,13 +166,13 @@
           if (strstr(self::$where,'id')) {
             $where = self::$where;
           } else {
-            $where = 'id = '.Entrada::get('id');
+            $where = 'id = '.Start::get('id');
           }
           switch ($acao) {
             case 'alterar':
               $sql = "UPDATE ".self::$tabela." SET ".implode(',',$set)." WHERE $where";
               $qr  = DB::execute($sql);
-              $id = Entrada::get('id');
+              $id = Start::get('id');
               // mostrar($sql);
               if ($qr->generico()->rowCount() > 0 or isset($_FILES['imagem'])) {
                 if (isset($_FILES['imagem'])) {
@@ -198,7 +198,7 @@
                         mkdir($pasta.self::$tabela);
                       }
 
-                      $nomeimg = Criptografar::md5($imagem['name'].time()).$ext;
+                      $nomeimg = Criptography::md5($imagem['name'].time()).$ext;
                       if (move_uploaded_file($imagem['tmp_name'],$pasta.self::$tabela.'/'.$nomeimg)) {
                         DB::execute("UPDATE ".self::$tabela." SET imagem='".$nomeimg."' WHERE id=0".$id);
                         echo "<p class='text-success'>Alterado com sucesso</p>";
@@ -224,7 +224,7 @@
               foreach ($_POST as $key => $value) {
                 if ($key != 'imagem') {
                   if ($key == 'senha') {
-                    $post[] = "'".Criptografar::md5($value)."'";
+                    $post[] = "'".Criptography::md5($value)."'";
                   } else {
                     $post[] = "'$value'";
                   }
@@ -265,7 +265,7 @@
                       if (!file_exists($pasta.self::$tabela)) {
                         mkdir($pasta.self::$tabela);
                       }
-                      $nomeimg = Criptografar::md5($imagem['name'].time()).$ext;
+                      $nomeimg = Criptography::md5($imagem['name'].time()).$ext;
                       if (move_uploaded_file($imagem['tmp_name'],$pasta.self::$tabela.'/'.$nomeimg)) {
                         DB::execute("UPDATE ".self::$tabela." SET imagem='".$nomeimg."' WHERE id=0".$id);
                         echo "<p class='text-success'>Inserido com sucesso</p>";
@@ -312,7 +312,7 @@
         <?php
       } else if ($acao == 'alterar') {
         if (isset($_GET['id']) or strstr(self::$where,'id')) {
-          $id = Entrada::get('id');
+          $id = Start::get('id');
           $dados = self::listagem($id);
           ?>
           <div class="container-fluid">
@@ -458,7 +458,7 @@
         <?php
         }
       } else if ($acao == 'remover' and isset($_GET['id'])) {
-        $id = Entrada::get('id');
+        $id = Start::get('id');
         $sql = "DELETE FROM ".self::$tabela. " WHERE id=0".$id;
         if (DB::execute($sql)->generico()->rowCount() > 0) {
           echo "<p class='text-success'>Deletado com sucesso.</p>";

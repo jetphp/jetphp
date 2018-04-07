@@ -67,8 +67,8 @@
     }
 
     public static function logar() {
-      $usuario = Entrada::post('usuario');
-      $senha   = Criptografar::md5(Entrada::post('senha'));
+      $usuario = Start::post('usuario');
+      $senha   = Criptography::md5(Start::post('senha'));
 
       $sql = "SELECT * FROM administrador_usuarios WHERE usuario='$usuario' and senha='$senha' and ativo=1";
       $qr  = DB::execute($sql);

@@ -1,9 +1,9 @@
 {
-    "name": "joaoartur/jetphp",
+    "name": "jetphp/jetphp",
     "description": "JetPHP - Framework gaúcho.",
     "type": "library",
     "license": "MIT",
-    "version": "1.5.9",
+    "version": "2.0",
     "authors": [
         {
             "name": "João Artur",
@@ -22,16 +22,8 @@
     	"instalar": [
     	  "echo 'Bem vindo ao JetPHP!\n@author João Artur\n\n'",
           "composer install",
-          "curl http://dev.joaoartur.com/projetos/jetphp/jetphp-admin.zip > jetphp-admin.zip",
-          "mv jetphp-admin.zip app/visual/admin.zip",
-          "unzip app/visual/admin.zip -d app/visual/",
-          "rm app/visual/admin.zip"
+          "echo 'Obrigado por instalar o JetPHP :)\n'"
     	]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.5-dev"
-        }
     }
 
 }
