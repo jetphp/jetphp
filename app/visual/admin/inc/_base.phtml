@@ -1,14 +1,14 @@
 <div class="content-wrapper">
   <section class="content-header">
     <?php
-      if (strstr(Admin::$controle::$acaoformulario,'I')) {
+      if (true) {
         ?>
-          <a href="?acao=inserir" class="btn btn-success pull-right">Inserir</a>
+          <a href="?acao=add" class="btn btn-success pull-right">Inserir</a>
         <?php
       }
     ?>
     <h1>
-      <?php echo Admin::$controle::$nome; ?>
+      <?=$title?>
     </h1>
   </section>
   <section class="content container-fluid">

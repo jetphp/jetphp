@@ -14,10 +14,4 @@
 
   // Route de instalação, remover após instalar
   Route::add('instalacao','index@InstalacaoControle');
-
-
-  Route::add('docs/:titulo/:pagina', 'index@DocsControle');
-  Route::add('docs/', 'redirecionar@DocsControle');
-
-  Route::add('captchaGerar', 'captcha@AdministradorControle');
 ?>

@@ -35,6 +35,7 @@
         $r = $qr->generico()->fetch(PDO::FETCH_OBJ);
         if (file_exists('app/controlador/admin/'.$r->controle.'.php')) {
           include 'app/controlador/admin/'.$r->controle.'.php';
+          
           self::$controle = $r->controle;
           new $r->controle;
         } else {
