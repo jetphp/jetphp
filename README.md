@@ -27,6 +27,4 @@ composer install-framework
 
 ### Version
 
-```
 v2.0 **BETA**
-```
