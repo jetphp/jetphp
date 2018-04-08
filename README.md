@@ -30,5 +30,3 @@ composer install-framework
 ```
 v2.0 **BETA**
 ```
-
-**OBS:** recomendo aguardar uma versão estável para não ter nenhum problema de compatibilidade ou falta de ferramentas!
