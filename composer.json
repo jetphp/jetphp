@@ -19,10 +19,10 @@
         "guzzlehttp/guzzle": "^6.3"
     },
     "scripts": {
-    	"instalar": [
-    	  "echo 'Bem vindo ao JetPHP!\n@author João Artur\n\n'",
+    	"install-framework": [
+    	  "echo 'Welcome to JetPHP Framework!\n@author João Artur\n\n'",
           "composer install",
-          "echo 'Obrigado por instalar o JetPHP :)\n'"
+          "echo 'Thank you for installing JetPHP :)\nStar and watch our github repository! \n'"
     	]
     }
 

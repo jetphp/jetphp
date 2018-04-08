@@ -1,32 +1,34 @@
 # JetPHP
-Framework gaúcho com foco em desenvolvimento de sites e sistemas em PHP
+PHP Framework for full-stack websites and systems
 
-## Documentação
-Em breve será disponibilizada a documentação completa, junto de uma versão estável.
-### Como instalar?
 
-* Baixe o repositório via **git** ou **svn**
+## Documentation
+The v2.0 documentation is being writed, you can read it at https://jetphp.github.io/
+
+### How to install?
+
+* Download repository using **git** or **svn**
 
 ```
 git clone https://github.com/jetphp/jetphp
 ```
-ou 
+or
 
 ```
 svn checkout https://github.com/jetphp/jetphp
 ```
-* Baixe os requisitos para o framework via **composer**
+* Use **composer** for managing all dependencies
 
-Caso não tenha o composer instalado, [veja como instalá-lo](https://getcomposer.org/), após execute em seu terminal o comando:
-
-```
-composer instalar
-```
-
-### Versão
+If you don't have composer, [learn how to install](https://getcomposer.org/), after execute the following command in your command-line:
 
 ```
-v1.5-dev
+composer install-framework
+```
+
+### Version
+
+```
+v2.0 **BETA**
 ```
 
 **OBS:** recomendo aguardar uma versão estável para não ter nenhum problema de compatibilidade ou falta de ferramentas!
