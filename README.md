@@ -19,7 +19,7 @@ svn checkout https://github.com/jetphp/jetphp
 ```
 * Use **composer** for managing all dependencies
 
-If you don't have composer, [learn how to install](https://getcomposer.org/), after execute the following command in your command-line:
+If you don't have composer, [learn how to install](https://getcomposer.org/), after installing execute the following command in your command-line:
 
 ```
 composer install-framework
