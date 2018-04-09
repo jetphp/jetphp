@@ -7,6 +7,12 @@
   // Modelo do controle
 
   class Controle {
-    // Em breve
+    public function view($caminho) {
+      if (file_exists('vendor/autoload.php')) {
+        Load::view($caminho);
+      } else {
+        header('Location:'.Config::show('PASTA_PADRAO').'instalacao');
+      }
+    }
   }
 ?>
