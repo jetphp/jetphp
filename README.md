@@ -7,23 +7,13 @@ The v2.0 documentation is being writed, you can read it at https://jetphp.github
 
 ### How to install?
 
-* Download repository using **git** or **svn**
-
-```
-git clone https://github.com/jetphp/jetphp
-```
-or
-
-```
-svn checkout https://github.com/jetphp/jetphp
-```
 * Use **composer** for managing all dependencies
 
-If you don't have composer, [learn how to install](https://getcomposer.org/), after installing execute the following command in your command-line:
+```
+ composer create-project --prefer-dist jetphp/jetphp install_folder
+```
 
-```
-composer install-framework
-```
+If you don't have composer, [learn how to install](https://getcomposer.org/)
 
 ### Version
 
