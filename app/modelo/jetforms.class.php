@@ -46,7 +46,7 @@
                 break;
 
                 case 'delete':
-
+                    $this->deleteView();
                 break;
 
                 case 'add':
@@ -149,7 +149,7 @@
                             $this->t_body .= "<td>".$value."</td>";
                         }
 
-                        $this->t_body .= $this->actionButtons($count+1);
+                        $this->t_body .= $this->actionButtons($record['id']);
                         $this->t_body .= "</tr>";
                     }
             }
@@ -185,58 +185,80 @@
 
         // ------- End listView method -------
 
+        // ------- deleteView method -------
+
+        public function deleteView() {
+          if ($this->query != false) {
+            $query = explode(" ",$this->query);
+            $table = $query[3];
+            $id    = Start::get('id');
+
+            DB::execute("DELETE FROM {$table} WHERE id=:id",['id'=>$id]);
+            echo "<script>history.back();</script>";
+          } else if ($this->table != false) {
+            $id    = Start::get('id');
+            DB::execute("DELETE FROM {$this->table} WHERE id=:id",['id'=>$id]);
+            echo "<script>history.back();</script>";
+          } else {}
+        }
+
+        // ------- End deleteView method -------
+
 
 
 
         // ------- addView method -------
         public function addView() {
             if ($this->query != false) {
-
+              $query = explode(" ",$this->query);
+              $this->table = $query[3];
             } else if ($this->table != false) {
-                $columns = [];
-                $f_columns = [];
-                $qr = DB::execute("SELECT DISTINCT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_NAME = :table", ['table'=>$this->table]);
-                if ($qr->count() > 0) {
-                    while($r = $qr->list(PDO::FETCH_OBJ)) {
-                        $columns[] = $r->COLUMN_NAME;
-                    }
-                }
-                if (isset($columns) and count($columns) > 0) {
-                    $i = 0;
-                    foreach ($columns as $column) {
-                        if (isset($this->fields[$column])) {
-                            $qr = DB::execute("SELECT DISTINCT DATA_TYPE as type,CHARACTER_MAXIMUM_LENGTH as max FROM information_schema.COLUMNS WHERE TABLE_NAME = :t and COLUMN_NAME = '{$column}'", ['t' => $this->table]);
-                            $r  = $qr->list();
 
-                            $f_columns[$i] = [];
-                            $f_columns[$i]['title']  = $this->fields[$column]['title'];
-                            $f_columns[$i]['name']   = $this->fields[$column]['field'];
-                            $f_columns[$i]['action'] = str_split($this->fields[$column]['action']);
-
-                            if (isset($this->fields[$column]['class'])):
-                                $f_columns[$i]['class'] = $this->fields[$column]['class'];
-                            endif;
-                            if (isset($this->fields[$column]['disabled'])):
-                                $f_columns[$i]['disabled'] = $this->fields[$column]['disabled'];
-                            endif;
-                            $f_columns[$i]['type'] = $r->type;
-                            $f_columns[$i]['max']  = ($r->max != null) ? $r->max : 11;
-
-                            $i++;
-                        }
-                    }
-                    $this->f_columns = $f_columns;
-                } else {
-                    ?>
-                    <p>An error ocurred.</p>
-                    <?php
-                }
-
-
-                $this->render('add');
             } else {
 
             }
+            $columns = [];
+            $f_columns = [];
+            $qr = DB::execute("SELECT DISTINCT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_NAME = :table", ['table'=>$this->table]);
+            if ($qr->count() > 0) {
+                while($r = $qr->list(PDO::FETCH_OBJ)) {
+                    $columns[] = $r->COLUMN_NAME;
+                }
+            }
+            if (isset($columns) and count($columns) > 0) {
+                $i = 0;
+                foreach ($columns as $column) {
+                    if (isset($this->fields[$column])) {
+                        $qr = DB::execute("SELECT DISTINCT DATA_TYPE as type,CHARACTER_MAXIMUM_LENGTH as max FROM information_schema.COLUMNS WHERE TABLE_NAME = :t and COLUMN_NAME = '{$column}'", ['t' => $this->table]);
+                        $r  = $qr->list();
+
+                        $f_columns[$i] = [];
+                        $f_columns[$i]['title']  = $this->fields[$column]['title'];
+                        $f_columns[$i]['name']   = $this->fields[$column]['field'];
+                        $f_columns[$i]['action'] = str_split($this->fields[$column]['action']);
+
+                        if (isset($this->fields[$column]['class'])):
+                            $f_columns[$i]['class'] = $this->fields[$column]['class'];
+                        endif;
+                        if (isset($this->fields[$column]['disabled'])):
+                            $f_columns[$i]['disabled'] = $this->fields[$column]['disabled'];
+                        endif;
+                        $f_columns[$i]['type'] = $r->type;
+                        $f_columns[$i]['max']  = ($r->max != null) ? $r->max : 11;
+
+                        $i++;
+                    }
+                }
+                $this->f_columns = $f_columns;
+            } else {
+                ?>
+                <p>An error ocurred.</p>
+                <?php
+            }
+
+
+            $this->render('add');
+
             return $this;
         }
 
@@ -278,57 +300,60 @@
 
             if (Start::get('id') != '' && Start::get('id') != false && Start::get('id') != null) {
                 if ($this->query != false) {
-
+                  $query = explode(" ",$this->query);
+                  $this->table = $query[3];
                 } else if ($this->table != false) {
-                    $sdb = new StaticDB();
-                    $tbl = $sdb->{$this->table};
-                    $edt = $tbl()->show(Start::get('id'));
 
-                    $columns = [];
-                    $f_columns = [];
-                    $qr = DB::execute("SELECT DISTINCT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_NAME = :table", ['table'=>$this->table]);
-                    if ($qr->count() > 0) {
-                        while($r = $qr->list(PDO::FETCH_OBJ)) {
-                            $columns[] = $r->COLUMN_NAME;
-                        }
-                    }
-                    if (isset($columns) and count($columns) > 0) {
-                        $i = 0;
-                        foreach ($columns as $column) {
-                            if (isset($this->fields[$column])) {
-                                $qr = DB::execute("SELECT DISTINCT DATA_TYPE as type,CHARACTER_MAXIMUM_LENGTH as max FROM information_schema.COLUMNS WHERE TABLE_NAME = :t and COLUMN_NAME = '{$column}'", ['t' => $this->table]);
-                                $r  = $qr->list();
-
-                                $f_columns[$i] = [];
-                                $f_columns[$i]['title']  = $this->fields[$column]['title'];
-                                $f_columns[$i]['name']   = $this->fields[$column]['field'];
-                                $f_columns[$i]['action'] = str_split($this->fields[$column]['action']);
-                                $f_columns[$i]['value']  = (isset($edt->{$f_columns[$i]['name']})) ? $edt->{$f_columns[$i]['name']} : 'oi';
-
-                                if (isset($this->fields[$column]['class'])):
-                                    $f_columns[$i]['class'] = $this->fields[$column]['class'];
-                                endif;
-                                if (isset($this->fields[$column]['disabled'])):
-                                    $f_columns[$i]['disabled'] = $this->fields[$column]['disabled'];
-                                endif;
-                                $f_columns[$i]['type'] = $r->type;
-                                $f_columns[$i]['max']  = ($r->max != null) ? $r->max : 11;
-
-                                $i++;
-                            }
-                        }
-                        $this->f_columns = $f_columns;
-                    } else {
-                        ?>
-                        <p>An error ocurred.</p>
-                        <?php
-                    }
-
-
-                    $this->render('edit');
                 } else {
 
                 }
+
+                $sdb = new StaticDB();
+                $tbl = $sdb->{$this->table};
+                $edt = $tbl()->show(Start::get('id'));
+
+                $columns = [];
+                $f_columns = [];
+                $qr = DB::execute("SELECT DISTINCT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_NAME = :table", ['table'=>$this->table]);
+                if ($qr->count() > 0) {
+                    while($r = $qr->list(PDO::FETCH_OBJ)) {
+                        $columns[] = $r->COLUMN_NAME;
+                    }
+                }
+                if (isset($columns) and count($columns) > 0) {
+                    $i = 0;
+                    foreach ($columns as $column) {
+                        if (isset($this->fields[$column])) {
+                            $qr = DB::execute("SELECT DISTINCT DATA_TYPE as type,CHARACTER_MAXIMUM_LENGTH as max FROM information_schema.COLUMNS WHERE TABLE_NAME = :t and COLUMN_NAME = '{$column}'", ['t' => $this->table]);
+                            $r  = $qr->list();
+
+                            $f_columns[$i] = [];
+                            $f_columns[$i]['title']  = $this->fields[$column]['title'];
+                            $f_columns[$i]['name']   = $this->fields[$column]['field'];
+                            $f_columns[$i]['action'] = str_split($this->fields[$column]['action']);
+                            $f_columns[$i]['value']  = (isset($edt->{$f_columns[$i]['name']})) ? $edt->{$f_columns[$i]['name']} : '';
+
+                            if (isset($this->fields[$column]['class'])):
+                                $f_columns[$i]['class'] = $this->fields[$column]['class'];
+                            endif;
+                            if (isset($this->fields[$column]['disabled'])):
+                                $f_columns[$i]['disabled'] = $this->fields[$column]['disabled'];
+                            endif;
+                            $f_columns[$i]['type'] = $r->type;
+                            $f_columns[$i]['max']  = ($r->max != null) ? $r->max : 11;
+
+                            $i++;
+                        }
+                    }
+                    $this->f_columns = $f_columns;
+                } else {
+                    ?>
+                    <p>An error ocurred.</p>
+                    <?php
+                }
+
+
+                $this->render('edit');
             } else {
                 $this->render('error');
             }
