@@ -56,7 +56,7 @@
       }
       if (isset($rotaatual)) {} else {
         $rota = self::check($caminho);
-        if ($rota) {
+        if (is_string($rota)) {
           $rota = explode('@',$rota);
           $func = $rota[0];
           $cont = $rota[1];
@@ -68,6 +68,8 @@
           } else {
             Load::view('erro.404');
           }
+        } else if (is_callable($rota)) {
+          return $rota();
         } else {
           Load::view('erro.404');
         }
