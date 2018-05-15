@@ -29,7 +29,7 @@
         } else {
           $arr_logar = [];
         }
-        Load::view('admin.login',$arr_logar,true,false);
+        return self::view('admin.login',$arr_logar,true,false);
       }
     }
   }
