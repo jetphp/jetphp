@@ -1,5 +1,5 @@
 # JetPHP
-PHP Framework for full-stack websites and systems
+PHP Framework to developing websites and systems
 
 
 ## Documentation
