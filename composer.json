@@ -22,7 +22,6 @@
     "scripts": {
     	"install-framework": [
             "echo 'Welcome to JetPHP Framework!\n@author João Artur\n\n'",
-            "unzip app/view/admin/misc.zip",
             "composer install",
             "echo 'Thank you for installing JetPHP :)\nStar and watch our github repository! \n'"
     	]
