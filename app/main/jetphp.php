@@ -4,7 +4,7 @@
   * @description www.joaoartur.com - www.github.com/JoaoArtur
   */
 
-  class JoaoArtur {
+  class JetPHP {
 
     public function __construct() {
       Route::load(Config::show('PASTA_PADRAO').self::rotaAtual());

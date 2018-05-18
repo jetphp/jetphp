@@ -61,8 +61,8 @@
           $func = $rota[0];
           $cont = $rota[1];
 
-          if (file_exists('app/controlador/'.$cont.'.php')) {
-            include 'app/controlador/'.$cont.'.php';
+          if (file_exists('app/controller/'.$cont.'.php')) {
+            include 'app/controller/'.$cont.'.php';
             $cont = new $cont();
             $cont::$func();
           } else {
@@ -116,9 +116,9 @@
               $func = $rota[0];
               $cont = $rota[1];
 
-              if (file_exists('app/controlador/'.$cont.'.php')) {
+              if (file_exists('app/controller/'.$cont.'.php')) {
                 $_SESSION['caminho'] = $caminho;
-                include 'app/controlador/'.$cont.'.php';
+                include 'app/controller/'.$cont.'.php';
                 $cont = new $cont();
                 $cont::$func();
               } else {

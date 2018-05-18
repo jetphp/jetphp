@@ -13,7 +13,7 @@
     public static function view($caminho,$var=null,$admin=false,$menu=true) {
       $caminho = str_replace('.','/',$caminho);
       unset($_SESSION['caminho']);
-      if (!isset($_SESSION['caminho']) and file_exists('app/visual/'.$caminho.'.phtml')) {
+      if (!isset($_SESSION['caminho']) and file_exists('app/view/'.$caminho.'.phtml')) {
         $_SESSION['caminho'] = $caminho;
         if ($var != null and is_array($var)) {
           extract($var);
@@ -24,12 +24,12 @@
         } else {
           $adm = '';
         }
-        include 'app/visual/'.$adm.'inc/topo.phtml';
+        include 'app/view/'.$adm.'inc/topo.phtml';
         if ($menu) {
-          include 'app/visual/'.$adm.'inc/menu.phtml';
+          include 'app/view/'.$adm.'inc/menu.phtml';
         }
-        include 'app/visual/'.$caminho.'.phtml';
-        include 'app/visual/'.$adm.'inc/rodape.phtml';
+        include 'app/view/'.$caminho.'.phtml';
+        include 'app/view/'.$adm.'inc/rodape.phtml';
         return true;
       } else {
         return false;
@@ -37,7 +37,7 @@
     }
 
     public static function class($classe) {
-      $arq = "app/controlador/classes/$classe.php";
+      $arq = "app/controller/classes/$classe.php";
       if (file_exists($arq)) {
         include $arq;
       }

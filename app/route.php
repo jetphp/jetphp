@@ -1,9 +1,4 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  */
-
   // Routes
 
   Route::add('/','index@InicioControle');

@@ -413,12 +413,12 @@
         }
 
         private function render($type='list') {
-            include 'app/visual/admin/inc/topo.phtml';
-            include 'app/visual/admin/inc/menu.phtml';
+            include 'app/view/admin/inc/topo.phtml';
+            include 'app/view/admin/inc/menu.phtml';
 
             // $add   = $this->add;
             $title = $this->title;
-            include 'app/visual/admin/inc/_base.phtml';
+            include 'app/view/admin/inc/_base.phtml';
 
             if ($type == 'list') {
                 $this->generateTable();
@@ -430,7 +430,7 @@
                 echo "<p>An error ocurred.</p>";
             } else {}
 
-            include 'app/visual/admin/inc/rodape1.phtml';
+            include 'app/view/admin/inc/rodape1.phtml';
 
             return $this;
         }

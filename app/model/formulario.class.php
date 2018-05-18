@@ -27,11 +27,11 @@
         }
       }
       self::$acao   = (isset($_GET['acao'])) ? Start::get('acao') : 'listar';
-      include 'app/visual/admin/inc/topo.phtml';
-      include 'app/visual/admin/inc/menu.phtml';
-      include 'app/visual/admin/inc/_base.phtml';
+      include 'app/view/admin/inc/topo.phtml';
+      include 'app/view/admin/inc/menu.phtml';
+      include 'app/view/admin/inc/_base.phtml';
       Admin::$controle::definirCampos();
-      include 'app/visual/admin/inc/rodape1.phtml';
+      include 'app/view/admin/inc/rodape1.phtml';
     }
 
     public static function adicionarCampo($tipo,$arr_nome,$divClass=null,$acao='LUI') {
