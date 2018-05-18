@@ -9,6 +9,7 @@
   class DB {
     private static $conexao = null;
     private static $qr      = null;
+    private static $sql      = null;
 
     private static function connect() {
       if (self::$conexao != null) {
@@ -54,7 +55,7 @@
       $sql = "select * from $table";
       if (self::connect()) {
         $qr = self::$conexao->prepare($sql);
-        $qr->execute();
+
         self::$qr = $qr;
         return new self;
       }
@@ -64,7 +65,7 @@
       $sql = "select * from $table where id = $id";
       if (self::connect()) {
         $qr = self::$conexao->prepare($sql);
-        $qr->execute();
+
         self::$qr = $qr;
         return new self;
       }
@@ -74,7 +75,17 @@
       $sql = "select * from $table where $column = $value";
       if (self::connect()) {
         $qr = self::$conexao->prepare($sql);
-        $qr->execute();
+
+        self::$qr = $qr;
+        return new self;
+      }
+    }
+
+    public static function delete($table, $id) {
+      $sql = "delete from $table where id = $id";
+      if (self::connect()) {
+        $qr = self::$conexao->prepare($sql);
+
         self::$qr = $qr;
         return new self;
       }
