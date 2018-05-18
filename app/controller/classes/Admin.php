@@ -33,8 +33,8 @@
       $qr  = DB::execute($sql);
       if ($qr->generico()->rowCount() > 0) {
         $r = $qr->generico()->fetch(PDO::FETCH_OBJ);
-        if (file_exists('app/controller/admin/'.$r->controle.'.php')) {
-          include 'app/controller/admin/'.$r->controle.'.php';
+        if (file_exists('../app/controller/admin/'.$r->controle.'.php')) {
+          include '../app/controller/admin/'.$r->controle.'.php';
           
           self::$controle = $r->controle;
           new $r->controle;
