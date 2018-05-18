@@ -93,7 +93,7 @@
         if ($pesquisar) {
           if (isset($arr_vars[$pesquisar][0]) and count($arr_vars[$pesquisar][0]) > 0) {
             $vars = $arr_vars[$pesquisar][0];
-            $url  = explode('/',JoaoArtur::rotaAtual());
+            $url  = explode('/',JetPHP::rotaAtual());
             foreach($url as $k=>$u): if ($u == ''): unset($url[$k]); endif;endforeach;
             foreach ($vars as $key => $value) {
               $k = $key+1;

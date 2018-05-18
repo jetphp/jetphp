@@ -1,10 +1,6 @@
 
-  <?php
-    Load::js('jquery.js',true);
-    Load::js('bower_components/bootstrap/dist/js/bootstrap.min.js',true);
-    Load::js('dist/js/adminlte.min.js',true);
-
-    Load::mostrarJS();
-  ?>
+  <script src="<?=Config::show('ADMIN_MISC');?>js/jquery.js"></script>
+  <script src="<?=Config::show('ADMIN_MISC');?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="<?=Config::show('ADMIN_MISC');?>dist/js/adminlte.min.js"></script>
 </body>
 </html>
