@@ -9,6 +9,7 @@
   class DB {
     private static $conexao = null;
     private static $qr      = null;
+    private static $sql      = null;
 
     private static function connect() {
       if (self::$conexao != null) {
@@ -36,7 +37,6 @@
       return self::$qr;
     }
 
-
     public static function execute($sql, $bp='') {
       if (self::connect()) {
         $qr = self::$conexao->prepare($sql);
@@ -46,6 +46,46 @@
           }
         }
         $qr->execute();
+        self::$qr = $qr;
+        return new self;
+      }
+    }
+
+    public static function all($table) {
+      $sql = "select * from $table";
+      if (self::connect()) {
+        $qr = self::$conexao->prepare($sql);
+
+        self::$qr = $qr;
+        return new self;
+      }
+    }
+
+    public static function findById($table, $id) {
+      $sql = "select * from $table where id = $id";
+      if (self::connect()) {
+        $qr = self::$conexao->prepare($sql);
+
+        self::$qr = $qr;
+        return new self;
+      }
+    }
+
+    public static function find($table, $column, $value) {
+      $sql = "select * from $table where $column = $value";
+      if (self::connect()) {
+        $qr = self::$conexao->prepare($sql);
+
+        self::$qr = $qr;
+        return new self;
+      }
+    }
+
+    public static function delete($table, $id) {
+      $sql = "delete from $table where id = $id";
+      if (self::connect()) {
+        $qr = self::$conexao->prepare($sql);
+
         self::$qr = $qr;
         return new self;
       }
