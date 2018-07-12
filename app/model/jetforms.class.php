@@ -1,4 +1,5 @@
 <?php
+    namespace JetPHP\Model;
     class JetForms {
         public $title, $action, $allowed_actions;
         private $table, $where, $limit, $query, $fields, $last_field, $records, $t_header, $t_body, $f_columns;

@@ -1,12 +1,6 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  */
-
-  // Modelo de bancos de dados
-
-  abstract class Load {
+  namespace JetPHP\Model;
+  class Load {
     public static $css = [];
     public static $js  = [];
 
@@ -45,18 +39,18 @@
 
     public static function css($arq,$admin=false) {
       if ($admin) {
-        $misc = Config::show('ADMIN_MISC');
+        $misc = \JetPHP\Model\Config::show('ADMIN_MISC');
       } else {
-        $misc = Config::show('PASTA_MISC');
+        $misc = \JetPHP\Model\Config::show('PASTA_MISC');
       }
       self::$css[] = '<link rel="stylesheet" type="text/css" href="'.$misc.'css/'.$arq.'">';
     }
 
     public static function js($arq,$admin=false) {
       if ($admin) {
-        $misc = Config::show('ADMIN_MISC');
+        $misc = \JetPHP\Model\Config::show('ADMIN_MISC');
       } else {
-        $misc = Config::show('PASTA_MISC');
+        $misc = \JetPHP\Model\Config::show('PASTA_MISC');
       }
       self::$js[] = '<script src="'.$misc.'js/'.$arq.'"></script>';
     }

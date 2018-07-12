@@ -1,12 +1,6 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  */
-
-  // Modelo de Entrada
-
-  abstract class Start {
+  namespace JetPHP\Model;
+  class Start {
     public static function get($texto) {
       if (isset($_GET[$texto])) {
         return Security::antisql($_GET[$texto]);

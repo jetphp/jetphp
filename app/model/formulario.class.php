@@ -1,11 +1,5 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  */
-
-  // Modelo de criação de formularios, usado no gerenciador
-
+  namespace JetPHP\Model;
   class Formulario {
     public static $tabela;
     public static $acao = 'listar';

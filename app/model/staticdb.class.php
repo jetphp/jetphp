@@ -1,10 +1,5 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  * @version 1.5-dev
-  */
-
+  namespace JetPHP\Model;
   class StaticDB {
     public $where = '';
     public $join = '';

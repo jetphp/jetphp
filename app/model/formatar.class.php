@@ -1,12 +1,6 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  */
-
-  // Modelo de Formatar
-
-  abstract class Formatar {
+  namespace JetPHP\Model;
+  class Formatar {
     public static function mysqlData($data) {
       return date('d/m/Y',strtotime($data));
     }
@@ -17,7 +11,7 @@
       return date('Y-m-d',strtotime($data));
     }
     public static function dinheiro($dinheiro) {
-      return Config::show('moeda').' '.number_format($dinheiro,2,',','.');
+      return \JetPHP\Model\Config::show('moeda').' '.number_format($dinheiro,2,',','.');
     }
     public static function limitar($texto,$limite) {
       $l = str_split($texto);

@@ -1,4 +1,5 @@
 <?php
+  namespace JetPHP\Model;
   class Upload {
     private $file, $filename, $filepath, $mimes, $allowed_extensions, $tmp_file, $ext, $filetype;
 

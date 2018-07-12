@@ -11,14 +11,14 @@
     include $arquivo;
   }
 
+  include '../app/main/jetphp.php';
   include '../app/config.php';
   include '../app/route.php';
-  include '../app/main/jetphp.php';
+  new \JetPHP\JetPHP;
 
-  if (Config::show('DEBUG')) {
+  if (\JetPHP\Model\Config::show('DEBUG')) {
     ini_set('display_errors',1);
   }
 
 
-  new \JetPHP\JetPHP;
 ?>

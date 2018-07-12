@@ -1,4 +1,5 @@
 <?php
+  namespace JetPHP\Model;
   class JCaptcha {
     public function __construct() {
       if (isset($_SESSION['captcha'])) {

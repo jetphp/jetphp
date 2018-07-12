@@ -1,12 +1,6 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  */
-
-  // Modelo de configurações
-
-  abstract class Config {
+  namespace JetPHP\Model;
+  class Config {
     public static $config = [];
 
     public static function add($nome,$valor) {

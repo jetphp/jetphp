@@ -1,14 +1,7 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  */
-
-  // Modelo de rotas
-
-  abstract class Route {
+  namespace JetPHP\Model;
+  class Route {
     public static $rota = [];
-
     public static function add($caminho,$acao) {
       self::$rota[$caminho] = $acao;
     }
@@ -66,12 +59,12 @@
             $cont = new $cont();
             $cont::$func();
           } else {
-            Load::view('erro.404');
+            \JetPHP\Model\Load::view('erro.404');
           }
         } else if (is_callable($rota)) {
           return $rota();
         } else {
-          Load::view('erro.404');
+          \JetPHP\Model\Load::view('erro.404');
         }
       }
     }
@@ -109,7 +102,7 @@
               }
             }
             if (isset($erro) and $erro) {
-              Load::view('erro.404');
+              \JetPHP\Model\Load::view('erro.404');
             } else {
               $rota = self::$rota[$arr_chave[$pesquisar]];
               $rota = explode('@',$rota);
@@ -122,15 +115,15 @@
                 $cont = new $cont();
                 $cont::$func();
               } else {
-                Load::view('erro.404');
+                \JetPHP\Model\Load::view('erro.404');
               }
             }
           } else {
-            Load::view('erro.404');
+            \JetPHP\Model\Load::view('erro.404');
           }
         } else {
           if (!isset($_SESSION['caminho'])) {
-            Load::view('erro.404');
+            \JetPHP\Model\Load::view('erro.404');
           }
 
         }
