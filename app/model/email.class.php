@@ -1,14 +1,10 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  */
   use PHPMailer\PHPMailer\PHPMailer;
   use PHPMailer\PHPMailer\Exception;
   class Email {
     public static $email = '';
 
-    public function email() {
+    public function start() {
       self::$email = new PHPMailer();
       self::$email->isSMTP();
       self::$email->Host = Config::show('SMTP_HOST');

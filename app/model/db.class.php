@@ -1,11 +1,4 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  */
-
-  // Modelo de bancos de dados
-
   class DB {
     private static $conexao = null;
     private static $qr      = null;
@@ -29,14 +22,16 @@
       return self::$qr->rowCount();
     }
 
-    public static function list($tipo=PDO::FETCH_OBJ) {
+    public static function list($tipo) {
+      if ($tipo != '') {
+        $tipo = PDO::FETCH_OBJ;
+      }
       return self::$qr->fetch($tipo);
     }
 
     public static function generico() {
       return self::$qr;
     }
-
     public static function execute($sql, $bp='') {
       if (self::connect()) {
         $qr = self::$conexao->prepare($sql);
