@@ -1,4 +1,5 @@
 <?php
+  namespace JetPHP;
   class JetPHP {
     public function __construct() {
       Route::load(Config::show('PASTA_PADRAO').self::rotaAtual());

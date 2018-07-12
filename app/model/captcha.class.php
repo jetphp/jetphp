@@ -1,11 +1,5 @@
 <?php
-  /*
-  * JetPHP - @JoaoArtur
-  * Captcha
-  */
-
   class JCaptcha {
-
     public function __construct() {
       if (isset($_SESSION['captcha'])) {
         if (isset($_POST) and count($_POST) > 0) {
@@ -21,7 +15,6 @@
       }
       $this->gerar();
     }
-
     public function gerar() {
       $size = 5;
       $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuwxyz0123456789";
@@ -32,7 +25,6 @@
       $base = base64_encode(strtoupper($randomString));
       $_SESSION['captcha'] = $base;
     }
-
   }
   abstract class JCaptchaInput {
     public static function imagem() {
@@ -48,7 +40,6 @@
       ob_end_clean();
       return "data:image/png;base64,".base64_encode($conteudo);
     }
-
     public static function gerarCampo() {
       $captcha = "
         <div class='row'>

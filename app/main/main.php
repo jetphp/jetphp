@@ -20,5 +20,5 @@
   }
 
 
-  new JetPHP;
+  new \JetPHP\JetPHP;
 ?>

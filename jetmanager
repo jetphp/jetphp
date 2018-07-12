@@ -1,0 +1,31 @@
+<?php 
+	class jetmanager {
+		public function __construct() {
+			if (isset($argv[1])) {
+				$tipo = $argv[1];
+				switch ($tipo) {
+					case 'model':
+						$do = (isset($argv[2]) ? $argv[2] : false);
+						switch ($do) {
+							case 'install':
+								$model = $argv[3];
+								system("composer require jetphp/$model");
+								break;
+							
+							default:
+								echo "This command does not exists.";
+								break;
+						}
+						break;
+					
+					default:
+						echo "This command does not exists.";
+						break;
+				}
+			} else {
+				echo "Incorrect syntax, try 'php jetmanager model install [model name]'\n";
+			}
+		}
+	}
+	new jetmanager;
+?>
