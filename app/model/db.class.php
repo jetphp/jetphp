@@ -1,4 +1,5 @@
 <?php
+  namespace JetPHP\Model;
   class DB {
     private static $conexao = null;
     private static $qr      = null;

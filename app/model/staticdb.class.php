@@ -4,7 +4,7 @@
     public $where = '';
     public $join = '';
     public function __construct() {
-      $qr_e = DB::execute("SHOW TABLES");
+      $qr_e = \JetPHP\Model\DB::execute("SHOW TABLES");
       if ($qr_e::count() > 0) {
         while ($tabela = $qr_e::list(PDO::FETCH_OBJ)) {
           foreach ($tabela as $nome) {
@@ -32,11 +32,11 @@
       }
       if (is_numeric($tipo)) { // ID único
         $sql .= " and {$this->atual}.id=$tipo";
-        $qr = DB::execute($sql)->generico()->fetch($tipo_pdo);
+        $qr = \JetPHP\Model\DB::execute($sql)->generico()->fetch($tipo_pdo);
       } elseif ($tipo == 'all') { // Retornar todos os registros
-        $qr = DB::execute($sql)->generico()->fetchAll($tipo_pdo);
+        $qr = \JetPHP\Model\DB::execute($sql)->generico()->fetchAll($tipo_pdo);
       } elseif ($tipo == false) { // Retornar único registro
-        $qr = DB::execute($sql)->generico()->fetch($tipo_pdo);
+        $qr = \JetPHP\Model\DB::execute($sql)->generico()->fetch($tipo_pdo);
       } else {}
       $this->where = '';
       $this->join = '';

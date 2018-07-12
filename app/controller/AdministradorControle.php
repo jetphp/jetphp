@@ -1,31 +1,26 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  */
-
   class AdministradorControle extends Controle {
     public function __construct() {
-      Load::class('Admin');
+      \JetPHP\Model\Load::class('Admin');
     }
 
     public static function pagina($pagina=null) {
-      if (Admin::logado()) {
+      if (\JetPHP\Classes\Admin::logado()) {
         if ($pagina == null) {
           $pagina = Start::get('pagina');
         }
-        Admin::secao($pagina);
+         \JetPHP\Classes\Admin::secao($pagina);
       } else {
-        header('Location:'.Config::show('PASTA_PADRAO').Config::show('PASTA_ADMIN'));
+        header('Location:'.\JetPHP\Model\Config::show('PASTA_PADRAO').\JetPHP\Model\Config::show('PASTA_ADMIN'));
       }
     }
 
     public static function index() {
-      if (Admin::logado()) {
+      if ( \JetPHP\Classes\Admin::logado()) {
         self::pagina('home');
       } else {
         if (isset($_POST['usuario'])) {
-          $arr_logar = Admin::logar();
+          $arr_logar =  \JetPHP\Classes\Admin::logar();
         } else {
           $arr_logar = [];
         }

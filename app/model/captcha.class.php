@@ -11,8 +11,6 @@
             die();
           }
         }
-
-        //unset($_SESSION['captcha']);
       }
       $this->gerar();
     }

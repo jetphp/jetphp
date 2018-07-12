@@ -1,9 +1,5 @@
 <?php
-  /*
-  * @author João Artur
-  * @description www.joaoartur.com - www.github.com/JoaoArtur
-  */
-
+  namespace JetPHP\Classes;
   class Admin {
     public static $controle = '';
 
@@ -18,7 +14,7 @@
     public static function mostrar($campo) {
       if (isset($_SESSION['dados'])) {
         $sql = "SELECT * FROM administrador_usuarios WHERE id=0".$_SESSION['dados'];
-        $qr  = DB::execute($sql);
+        $qr  = \JetPHP\Model\DB::execute($sql);
         if ($qr->generico()->rowCount() > 0) {
           $r = $qr->generico()->fetch(PDO::FETCH_OBJ);
           return $r->$campo;
@@ -30,7 +26,7 @@
 
     public static function secao($pagina) {
       $sql = "SELECT * FROM administrador_secao WHERE pagina='$pagina' AND nivel >= 0".self::mostrar('nivel');
-      $qr  = DB::execute($sql);
+      $qr  = \JetPHP\Model\DB::execute($sql);
       if ($qr->generico()->rowCount() > 0) {
         $r = $qr->generico()->fetch(PDO::FETCH_OBJ);
         if (file_exists('../app/controller/admin/'.$r->controle.'.php')) {
@@ -39,10 +35,10 @@
           self::$controle = $r->controle;
           new $r->controle;
         } else {
-          Load::view('erro.404');
+          \JetPHP\Model\Load::view('erro.404');
         }
       } else {
-        Load::view('erro.404');
+        \JetPHP\Model\Load::view('erro.404');
       }
     }
 
@@ -50,7 +46,7 @@
       if (self::logado()) {
         $dados = $_SESSION['dados'];
         $sql   = "SELECT * FROM administrador_secao WHERE nivel >= 0".self::mostrar('nivel')." ORDER BY ordem ASC";
-        $qr    = DB::execute($sql);
+        $qr    = \JetPHP\Model\DB::execute($sql);
         if ($qr->generico()->rowCount() > 0) {
           $menu = [];
           while ($row = $qr->generico()->fetch(PDO::FETCH_ASSOC)) {
@@ -72,7 +68,7 @@
       $senha   = Criptography::md5(Start::post('senha'));
 
       $sql = "SELECT * FROM administrador_usuarios WHERE usuario='$usuario' and senha='$senha' and ativo=1";
-      $qr  = DB::execute($sql);
+      $qr  = \JetPHP\Model\DB::execute($sql);
       if ($qr->generico()->rowCount() > 0) {
         $r = $qr->generico()->fetch(PDO::FETCH_ASSOC);
         $_SESSION['dados'] = $r['id'];

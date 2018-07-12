@@ -87,7 +87,7 @@
         private function listView() {
 
             if ($this->query != false) {
-                $query = DB::execute($this->query);
+                $query = \JetPHP\Model\DB::execute($this->query);
 
                 if ($query->count() > 0) {
                     $this->records[] = [];
@@ -194,11 +194,11 @@
             $table = $query[3];
             $id    = Start::get('id');
 
-            DB::execute("DELETE FROM {$table} WHERE id=:id",['id'=>$id]);
+            \JetPHP\Model\DB::execute("DELETE FROM {$table} WHERE id=:id",['id'=>$id]);
             echo "<script>history.back();</script>";
           } else if ($this->table != false) {
             $id    = Start::get('id');
-            DB::execute("DELETE FROM {$this->table} WHERE id=:id",['id'=>$id]);
+            \JetPHP\Model\DB::execute("DELETE FROM {$this->table} WHERE id=:id",['id'=>$id]);
             echo "<script>history.back();</script>";
           } else {}
         }
@@ -220,7 +220,7 @@
             }
             $columns = [];
             $f_columns = [];
-            $qr = DB::execute("SELECT DISTINCT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_NAME = :table", ['table'=>$this->table]);
+            $qr = \JetPHP\Model\DB::execute("SELECT DISTINCT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_NAME = :table", ['table'=>$this->table]);
             if ($qr->count() > 0) {
                 while($r = $qr->list(PDO::FETCH_OBJ)) {
                     $columns[] = $r->COLUMN_NAME;
@@ -230,7 +230,7 @@
                 $i = 0;
                 foreach ($columns as $column) {
                     if (isset($this->fields[$column])) {
-                        $qr = DB::execute("SELECT DISTINCT DATA_TYPE as type,CHARACTER_MAXIMUM_LENGTH as max FROM information_schema.COLUMNS WHERE TABLE_NAME = :t and COLUMN_NAME = '{$column}'", ['t' => $this->table]);
+                        $qr = \JetPHP\Model\DB::execute("SELECT DISTINCT DATA_TYPE as type,CHARACTER_MAXIMUM_LENGTH as max FROM information_schema.COLUMNS WHERE TABLE_NAME = :t and COLUMN_NAME = '{$column}'", ['t' => $this->table]);
                         $r  = $qr->list();
 
                         $f_columns[$i] = [];
@@ -315,7 +315,7 @@
 
                 $columns = [];
                 $f_columns = [];
-                $qr = DB::execute("SELECT DISTINCT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_NAME = :table", ['table'=>$this->table]);
+                $qr = \JetPHP\Model\DB::execute("SELECT DISTINCT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_NAME = :table", ['table'=>$this->table]);
                 if ($qr->count() > 0) {
                     while($r = $qr->list(PDO::FETCH_OBJ)) {
                         $columns[] = $r->COLUMN_NAME;
@@ -325,7 +325,7 @@
                     $i = 0;
                     foreach ($columns as $column) {
                         if (isset($this->fields[$column])) {
-                            $qr = DB::execute("SELECT DISTINCT DATA_TYPE as type,CHARACTER_MAXIMUM_LENGTH as max FROM information_schema.COLUMNS WHERE TABLE_NAME = :t and COLUMN_NAME = '{$column}'", ['t' => $this->table]);
+                            $qr = \JetPHP\Model\DB::execute("SELECT DISTINCT DATA_TYPE as type,CHARACTER_MAXIMUM_LENGTH as max FROM information_schema.COLUMNS WHERE TABLE_NAME = :t and COLUMN_NAME = '{$column}'", ['t' => $this->table]);
                             $r  = $qr->list();
 
                             $f_columns[$i] = [];
