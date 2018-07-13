@@ -9,7 +9,7 @@
 						switch ($do) {
 							case 'install':
 								$model = $argv[3];
-								system("composer require jetphp/$model");
+								system("composer require jetphp/{$model}:dev-master");
 								break;
 							
 							default:
