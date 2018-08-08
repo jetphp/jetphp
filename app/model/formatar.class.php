@@ -1,6 +1,6 @@
 <?php
   namespace JetPHP\Model;
-  class Formatar {
+  class Format {
     public static function mysqlData($data) {
       return date('d/m/Y',strtotime($data));
     }
@@ -9,6 +9,9 @@
     }
     public static function dataMysql($data) {
       return date('Y-m-d',strtotime($data));
+    }
+    public static function convertPoints($val) {
+      return str_replace('.','/',$val);
     }
     public static function dinheiro($dinheiro) {
       return \JetPHP\Model\Config::show('moeda').' '.number_format($dinheiro,2,',','.');
