@@ -3,7 +3,7 @@
 
   $phpv = phpversion();
   if ($phpv < 7) {
-    echo "A versão do PHP deve ser acima da 7. Versão atual: $phpv";
+    echo "Your PHP version is lower than 7. Your version: $phpv";
     die;
   }
 
