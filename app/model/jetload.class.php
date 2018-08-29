@@ -9,12 +9,11 @@
 
 		public function view($path) {
 			$path = Format::convertPoints($path);
-			if (file_exists($this->viewPath.$path)) {
-				// View path exists
-				if ($this->top != false && file_exists($this->viewPath.$this->top)) { include $this->viewPath.$this->top; }
-				if ($this->menu != false && file_exists($this->viewPath.$this->menu)) { include $this->viewPath.$this->menu; }
-				include $this->viewPath.$path;
-				if ($this->footer != false && file_exists($this->viewPath.$this->footer)) { include $this->viewPath.$this->footer; }
+			if (file_exists($this->viewPath.$path.'.phtml')) {
+				if ($this->top != false && file_exists($this->viewPath.$this->top.'.phtml')) { include $this->viewPath.$this->top.'.phtml'; }
+				if ($this->menu != false && file_exists($this->viewPath.$this->menu.'.phtml')) { include $this->viewPath.$this->menu.'.phtml'; }
+				include $this->viewPath.$path.'.phtml';
+				if ($this->footer != false && file_exists($this->viewPath.$this->footer.'.phtml')) { include $this->viewPath.$this->footer.'.phtml'; }
 			} else {
 				if (file_exists($this->viewPath.'erro/404.phtml')) {
 					include $this->viewPath.'erro/404.phtml';
