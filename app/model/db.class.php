@@ -76,6 +76,26 @@
         return new self;
       }
     }
+    
+    public static function last($table, $where = "1 = 1") {
+      $sql = "select * from $table where $where order by id desc limit 1";
+      if (self::connect()) {
+        $qr = self::$conexao->prepare($sql);
+
+        self::$qr = $qr;
+        return new self;
+      }
+    }
+    
+    public static function first($table, $where = "1 = 1") {
+      $sql = "select * from $table where $where order by id asc limit 1";
+      if (self::connect()) {
+        $qr = self::$conexao->prepare($sql);
+
+        self::$qr = $qr;
+        return new self;
+      }
+    }
 
     public static function delete($table, $id) {
       $sql = "delete from $table where id = $id";
