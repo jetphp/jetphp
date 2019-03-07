@@ -5,6 +5,10 @@
     private static $qr      = null;
     private static $sql      = null;
 
+    public static function getInstance() {
+      return new self;
+    }
+
     private static function connect() {
       if (self::$conexao != null) {
         return true;
