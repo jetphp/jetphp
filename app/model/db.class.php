@@ -3,10 +3,10 @@
   class DB {
     private static $conexao = null;
     private static $qr      = null;
-    private static $sql      = null;
+    private static $sql     = null;
 
     public static function getInstance() {
-      return new self;
+      return self::connect();
     }
 
     private static function connect() {
@@ -15,7 +15,7 @@
       } else {
         try {
           self::$conexao = new PDO('mysql:host='.Config::show('DB_HOST').';charset=utf8;dbname='.Config::show('DB_NOME'),Config::show('DB_USUARIO'),Config::show('DB_SENHA'));
-          return true;
+          return self::$conexao;
         } catch (PDOException $e) {
           echo "<p>Erro ao conectar no banco de dados: <b>".$e->getMessage()."</b></p>";
           return false;
