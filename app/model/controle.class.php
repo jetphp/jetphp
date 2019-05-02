@@ -5,10 +5,13 @@
 
   class Controle {
     public static function view($caminho,$var=null,$admin=false,$menu=true) {
-      if (file_exists('../vendor/autoload.php') and Route::getActiveRoute() != '/install') {
+      if (file_exists('../vendor/autoload.php')) {
         Load::view($caminho,$var,$admin,$menu);
       } else {
-        header('Location:'.Config::show('PASTA_PADRAO').'install');
+        if (Route::getActiveRoute() != '/install') {
+          header('Location:'.Config::show('PASTA_PADRAO').'install');
+        }
+        Load::view($caminho,$var,$admin,$menu);
       }
     }
   }
