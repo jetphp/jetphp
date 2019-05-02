@@ -14,9 +14,9 @@
         return true;
       } else {
         try {
-          self::$conexao = new PDO('mysql:host='.Config::show('DB_HOST').';charset=utf8;dbname='.Config::show('DB_NOME'),Config::show('DB_USUARIO'),Config::show('DB_SENHA'));
+          self::$conexao = new \PDO('mysql:host='.Config::show('DB_HOST').';charset=utf8;dbname='.Config::show('DB_NOME'),Config::show('DB_USUARIO'),Config::show('DB_SENHA'));
           return self::$conexao;
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
           echo "<p>Erro ao conectar no banco de dados: <b>".$e->getMessage()."</b></p>";
           return false;
         }
@@ -29,7 +29,7 @@
 
     public static function list($tipo) {
       if ($tipo != '') {
-        $tipo = PDO::FETCH_OBJ;
+        $tipo = \PDO::FETCH_OBJ;
       }
       return self::$qr->fetch($tipo);
     }

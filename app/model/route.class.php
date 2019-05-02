@@ -61,12 +61,12 @@ class Route {
           $cont = new $cont();
           $cont::$func();
         } else {
-          \JetPHP\Model\Load::view('erro.404');
+          Load::view('erro.404');
         }
       } else if (is_callable($rota)) {
         return $rota();
       } else {
-        \JetPHP\Model\Load::view('erro.404');
+        Load::view('erro.404');
       }
     }
   }
@@ -153,7 +153,7 @@ class Route {
         if (isset($arr_vars[$pesquisar][0]) and count($arr_vars[$pesquisar][0]) > 0) {
 
           if (isset($erro) and $erro) {
-            \JetPHP\Model\Load::view('erro.404');
+            Load::view('erro.404');
           } else {
             $rota = self::$rota[$arr_chave[$pesquisar]];
             $rota = explode('@',$rota);
@@ -166,15 +166,15 @@ class Route {
               $cont = new $cont();
               $cont::$func();
             } else {
-              \JetPHP\Model\Load::view('erro.404');
+              Load::view('erro.404');
             }
           }
         } else {
-          \JetPHP\Model\Load::view('erro.404');
+          Load::view('erro.404');
         }
       } else {
         if (!isset($_SESSION['caminho'])) {
-          \JetPHP\Model\Load::view('erro.404');
+          Load::view('erro.404');
         }
 
       }

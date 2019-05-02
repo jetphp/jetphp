@@ -1,4 +1,5 @@
 <?php
+  use JetPHP\Model\Config;
   session_start();
   $phpv = phpversion();
   if ($phpv < 7) {
@@ -12,9 +13,9 @@
   include '../app/config.php';
   include '../app/route.php';
 
-  new \JetPHP\JetPHP;
+  new \JetPHP\JetPHP();
 
-  if (\JetPHP\Model\Config::show('DEBUG')) {
+  if (Config::show('DEBUG')) {
     ini_set('display_errors',1);
   }
 ?>

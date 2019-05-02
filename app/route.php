@@ -2,6 +2,7 @@
   use JetPHP\Model\Route;
   Route::add('/','index@InicioControle');
 
+
   // Manager routes, remove only if you'll not use.
   Route::add(\JetPHP\Model\Config::show('PASTA_ADMIN').':pagina','pagina@AdministradorControle');
   Route::add(\JetPHP\Model\Config::show('PASTA_ADMIN').'','index@AdministradorControle');
