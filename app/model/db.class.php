@@ -27,10 +27,8 @@
       return self::$qr->rowCount();
     }
 
-    public static function list($tipo) {
-      if ($tipo != '') {
-        $tipo = \PDO::FETCH_OBJ;
-      }
+    public static function list($tipo=null) {
+      if ($tipo == null) $tipo = \PDO::FETCH_OBJ;
       return self::$qr->fetch($tipo);
     }
 
