@@ -40,7 +40,8 @@
         $qr = self::$conexao->prepare($sql);
         if (is_array($bp)) {
           foreach ($bp as $name=>$param) {
-            $qr->bindParam($name,$param);
+            $name+=1;
+            $qr->bindValue($name,$param);
           }
         }
         $qr->execute();
