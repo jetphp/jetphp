@@ -190,5 +190,9 @@ class Route {
   public static function show() {
     return self::$rota;
   }
+  public static function getActiveRoute() {
+    $r = $_SERVER['REQUEST_URI'];
+    return $r;
+  }
 }
 ?>
