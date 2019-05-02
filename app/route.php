@@ -1,5 +1,7 @@
 <?php
   use JetPHP\Model\Route;
+  use JetPHP\Model\Config;
+  
   Route::add('/','index@InicioControle');
 
 
