@@ -1,7 +1,12 @@
 <?php
+  use JetPHP\Model\Load;
+  use JetPHP\Model\Start;
+  use JetPHP\Model\Config;
+  use JetPHP\Classes\Admin;
+
   class AdministradorControle extends Controle {
     public function __construct() {
-      \JetPHP\Model\Load::class('Admin');
+      Load::class('Admin');
     }
 
     public static function pagina($pagina=null) {
@@ -9,18 +14,18 @@
         if ($pagina == null) {
           $pagina = Start::get('pagina');
         }
-         \JetPHP\Classes\Admin::secao($pagina);
+         Admin::secao($pagina);
       } else {
-        header('Location:'.\JetPHP\Model\Config::show('PASTA_PADRAO').\JetPHP\Model\Config::show('PASTA_ADMIN'));
+        header('Location:'.Config::show('PASTA_PADRAO').Config::show('PASTA_ADMIN'));
       }
     }
 
     public static function index() {
-      if ( \JetPHP\Classes\Admin::logado()) {
+      if (Admin::logado()) {
         self::pagina('home');
       } else {
         if (isset($_POST['usuario'])) {
-          $arr_logar =  \JetPHP\Classes\Admin::logar();
+          $arr_logar = Admin::logar();
         } else {
           $arr_logar = [];
         }

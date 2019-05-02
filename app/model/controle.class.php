@@ -4,7 +4,7 @@
       if (file_exists('../vendor/autoload.php')) {
         \JetPHP\Model\Load::view($caminho,$var,$admin,$menu);
       } else {
-        header('Location:'.\JetPHP\Model\Config::show('PASTA_PADRAO').'instalacao');
+        header('Location:'.\JetPHP\Model\Config::show('PASTA_PADRAO').'install');
       }
     }
   }

@@ -62,7 +62,7 @@
               $msg .= "<select name='{$arr_nome[0]}' class='form-control'>";
               $msg .= "<option value='0'>--------</option>";
               if ($qr->generico()->rowCount() > 0) {
-                while ($r = $qr->generico()->fetch(PDO::FETCH_ASSOC)) {
+                while ($r = $qr->generico()->fetch(\PDO::FETCH_ASSOC)) {
                   if (isset($_GET['id'])) {
                     if ($_GET['id'] == $r['id']) {
                       $sel = 'selected';
@@ -131,9 +131,9 @@
       $qr  = \JetPHP\Model\DB::execute($sql);
       if ($qr->generico()->rowCount() > 0) {
         if ($id != null) {
-          return $qr->generico()->fetch(PDO::FETCH_ASSOC);
+          return $qr->generico()->fetch(\PDO::FETCH_ASSOC);
         } else {
-          return $qr->generico()->fetchAll(PDO::FETCH_ASSOC);
+          return $qr->generico()->fetchAll(\PDO::FETCH_ASSOC);
         }
       } else {
         return false;
@@ -236,7 +236,7 @@
                 if (isset($_FILES['imagem'])) {
                   if (isset($_FILES['imagem']['name']) and $_FILES['imagem']['name'] != '') {
                     $l = \JetPHP\Model\DB::execute("SELECT * FROM ".self::$tabela." WHERE (imagem IS NULL or imagem = '') ORDER BY id DESC");
-                    $r = $l->generico()->fetch(PDO::FETCH_OBJ);
+                    $r = $l->generico()->fetch(\PDO::FETCH_OBJ);
                     $id = $r->id;
                     $imagem = $_FILES['imagem'];
                     $ext = strchr($imagem['name'],'.');
@@ -346,7 +346,7 @@
                       echo "<select name='{$campo['campo']}' class='form-control'>";
                       if ($qr->generico()->rowCount() > 0) {
                         echo "<option value='0'>--------</option>";
-                        while ($r = $qr->generico()->fetch(PDO::FETCH_ASSOC)) {
+                        while ($r = $qr->generico()->fetch(\PDO::FETCH_ASSOC)) {
                           if (isset($_GET['id'])) {
                               if ($dados[$nome] == $r['id']) {
                               $sel = 'selected';
