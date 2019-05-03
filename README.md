@@ -10,7 +10,9 @@ The v1.0 documentation is being writed, you can read it at https://jetphp.github
 * Use **composer** for managing all dependencies
 
 ```
- composer create-project --prefer-dist jetphp/jetphp:dev-master install_folder
+ git clone https://github.com/jetphp/jetphp
+ cd jetphp
+ composer install
 ```
 
 If you don't have composer, [learn how to install](https://getcomposer.org/)
