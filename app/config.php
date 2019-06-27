@@ -11,9 +11,9 @@
   Config::add('GOOGLE_ANALYTICS','');
 
   // Database configuration
-  Config::add('DB_HOST','localhost');
+  Config::add('DB_HOST','jetphp-mysql');
   Config::add('DB_USUARIO','root');
-  Config::add('DB_SENHA','');
+  Config::add('DB_SENHA','root');
   Config::add('DB_NOME','jetphp');
   
   // E-mail configuration

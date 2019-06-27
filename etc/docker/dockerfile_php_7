@@ -1,0 +1,25 @@
+FROM php:7.2-apache
+
+RUN apt-get update
+
+RUN apt-get install -y \
+        zlib1g-dev
+
+RUN apt-get install -y \
+        libxml2-dev
+
+RUN /usr/local/bin/docker-php-ext-install mysqli pdo pdo_mysql zip xmlwriter
+RUN apt-get install libssl-dev -y
+
+RUN /usr/local/bin/docker-php-ext-install zip
+
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer --version
+
+RUN a2enmod rewrite
+RUN usermod -u 1000 www-data
+RUN usermod -G staff www-data
