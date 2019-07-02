@@ -3,5 +3,5 @@
     include __DIR__.'/vendor/autoload.php';
     include __DIR__.'/../app/core/autoload.php';
   } else {
-    throw new Exception("You need to install dependencies using composer");
+    echo "You need to install dependencies using composer";
   }
