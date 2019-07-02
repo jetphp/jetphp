@@ -1,9 +1,9 @@
 {
     "name": "jetphp/jetphp",
     "description": "JetPHP - Framework gaúcho.",
-    "type": "library",
+    "type": "project",
     "license": "MIT",
-    "version": "2.0",
+    "version": "1.0",
     "authors": [
         {
             "name": "João Artur",
