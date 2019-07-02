@@ -1,10 +1,9 @@
 <?php
-  use JetPHP\Model\Load;
   use JetPHP\Model\Start;
   use JetPHP\Model\Config;
   use JetPHP\Classes\Admin;
 
-  class AdministradorControle extends Controle {
+  class AdministradorControle {
     public function __construct() {
       Load::class('Admin');
     }
@@ -29,7 +28,7 @@
         } else {
           $arr_logar = [];
         }
-        return self::view('admin.login',$arr_logar,true,false);
+        return Load::view('admin.login',$arr_logar,true,false);
       }
     }
   }

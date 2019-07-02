@@ -1,5 +1,4 @@
 <?php
-  namespace JetPHP\Model;
   class Load {
     public static $css = [];
     public static $js  = [];
