@@ -1,7 +1,12 @@
 {
     "name": "jetphp/jetphp",
-    "description": "JetPHP - Framework gaúcho.",
-    "type": "project",
+    "description": "A php micro-framework for web developers.",
+    "keywords": [
+        "framework",
+        "jetphp",
+        "mvc"
+    ],
+    "type": "library",
     "license": "MIT",
     "version": "1.0",
     "authors": [
@@ -19,17 +24,6 @@
         "guzzlehttp/guzzle": "^6.3",
         "ralouphie/mimey": "^1.0"
     },
-    "scripts": {
-    	"install-framework": [
-            "echo 'Welcome to JetPHP Framework!\n@author João Artur\n\n'",
-            "composer install",
-            "echo 'Thank you for installing JetPHP :)\nStar and watch our github repository! \n'"
-    	]
-    },   
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0-dev"
-        }
-    }
-
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
