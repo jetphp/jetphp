@@ -1,6 +1,6 @@
 <?php
-  if (file_exists('../vendor/autoload.php')) {
-    include '../vendor/autoload.php';
+  if (file_exists(__DIR__.'/vendor/autoload.php')) {
+    include __DIR__.'/vendor/autoload.php';
   }
-  include '../app/main/main.php';
+  include __DIR__.'/../app/core/main.php';
 ?>

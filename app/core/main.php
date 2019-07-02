@@ -6,12 +6,19 @@
     echo "Your PHP version is lower than 7. Your version: $phpv";
     die;
   }
-  foreach (glob('../app/model/*.class.php') as $file) {
+
+  // Framework models
+  foreach (glob(__DIR__.'/model/*.php') as $file) {
     include $file;
   }
-  include '../app/main/jetphp.php';
-  include '../app/config.php';
-  include '../app/route.php';
+
+  // User models
+  foreach (glob(__DIR__.'/../model/*.php') as $file) {
+    include $file;
+  }
+  include __DIR__.'/jetphp.php';
+  include __DIR__.'/../config.php';
+  include __DIR__.'/../route.php';
 
   new \JetPHP\JetPHP();
 
