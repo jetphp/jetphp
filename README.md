@@ -7,7 +7,7 @@ The v1.0 documentation is being writed, you can read it at https://jetphp.github
 
 ### How to install?
 
-* Use **composer** for managing all dependencies
+* Use **composer** to manage all dependencies
 
 ```
  git clone https://github.com/jetphp/jetphp
