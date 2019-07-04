@@ -15,6 +15,8 @@ The v1.0 documentation is being writed, you can read it at https://jetphp.github
  composer install
 ```
 
+If you don't have composer, [learn how to install](https://getcomposer.org/)
+
 ### How to start with docker?
 
 - Install docker
@@ -23,8 +25,10 @@ The v1.0 documentation is being writed, you can read it at https://jetphp.github
 - Run `docker exec -it jetphp-php7 bash` and run `composer install`
 - Go to `http://localhost:5005` and see JetPHP
 
-If you don't have composer, [learn how to install](https://getcomposer.org/)
 
-### Version
+### Install development version (not stable)
 
-v1.0 **BETA**
+v1.1.1
+```
+git clone https://github.com/jetphp/jetphp --branch v1.1
+```
