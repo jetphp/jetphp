@@ -6,16 +6,16 @@
     private static $sql     = null;
 
     public static function getInstance() {
-      return self::connect();
+      return new self;
     }
 
     private static function connect() {
       if (self::$conexao != null) {
-        return true;
+        return new self;
       } else {
         try {
           self::$conexao = new \PDO('mysql:host='.Config::show('DB_HOST').';charset=utf8;dbname='.Config::show('DB_NOME'),Config::show('DB_USUARIO'),Config::show('DB_SENHA'));
-          return self::$conexao;
+          return new self;
         } catch (\PDOException $e) {
           echo "<p>Erro ao conectar no banco de dados: <b>".$e->getMessage()."</b></p>";
           return false;
