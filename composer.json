@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "phpmailer/phpmailer": "^6.0",
+        "phpmailer/phpmailer": "^6.1.6",
         "psr/log": "^1.0",
         "symfony/polyfill-mbstring": "^1.6",
         "guzzlehttp/guzzle": "^6.3",
