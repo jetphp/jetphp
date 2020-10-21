@@ -156,17 +156,21 @@ class Route {
             Load::view('erro.404');
           } else {
             $rota = self::$rota[$arr_chave[$pesquisar]];
-            $rota = explode('@',$rota);
-            $func = $rota[0];
-            $cont = $rota[1];
-
-            if (file_exists('../app/controller/'.$cont.'.php')) {
-              $_SESSION['caminho'] = $caminho;
-              include '../app/controller/'.$cont.'.php';
-              $cont = new $cont();
-              $cont::$func();
+            if (is_object($rota)) {
+              $rota();
             } else {
-              Load::view('erro.404');
+              $rota = explode('@',$rota);
+              $func = $rota[0];
+              $cont = $rota[1];
+  
+              if (file_exists('../app/controller/'.$cont.'.php')) {
+                $_SESSION['caminho'] = $caminho;
+                include '../app/controller/'.$cont.'.php';
+                $cont = new $cont();
+                $cont::$func();
+              } else {
+                Load::view('erro.404');
+              }
             }
           }
         } else {
